@@ -5,6 +5,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 import uuid
 from datetime import datetime
+import streamlit.components.v1 as components
 
 # --- 定数 ---
 SIMILARITY_THRESHOLD = 0.7 # 類似度のしきい値
@@ -283,5 +284,8 @@ if prompt := st.chat_input("メッセージを入力してください..."):
         "coaching_mode": False
     })
     
-    # --- ページを再実行して、更新された履歴を一度に表示 ---
-    st.rerun() 
+    # 会話の最後に自動でスクロールするためのJavaScriptハック
+    components.html(
+        "<script>window.scrollTo(0, document.body.scrollHeight);</script>",
+        height=0
+    ) 
