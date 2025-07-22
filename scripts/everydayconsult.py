@@ -1,4 +1,3 @@
-
 import streamlit as st
 import os
 from openai import OpenAI
@@ -113,22 +112,19 @@ if st.session_state.get("advice_mode", False):
         # ナレッジベース全体をコンテキストとして形成
         context_docs = []
         if db:
-            # FAISSストアからすべてのドキュメントを取得する（小規模なDB向け）
-            try:
-                # FAISSの内部データに直接アクセスするのは理想的ではないが、
-                # langchainのFAISS実装には全件取得の直接的なメソッドがないため、
-                # このような形でIDリストからドキュメントを再構築する。
-                # 注意: index_to_docstore_id はFAISSの内部属性
-                all_ids = list(db.index_to_docstore_id.values())
-                context_docs = db.docstore.mget(all_ids)
-            except Exception as e:
-                st.warning(f"ナレッジベースの全件取得中にエラー: {e}")
+            # FAISSインデックスからすべてのドキュメントIDを取得し、ドキュメントを取得する
+            docstore = st.session_state.db.docstore
+            all_doc_ids = list(docstore._dict.keys())
+            retrieved_docs = [docstore.search(doc_id) for doc_id in all_doc_ids]
+            # 不要なNoneをフィルタリング
+            retrieved_docs = [doc for doc in retrieved_docs if doc is not None]
 
-        context = "--- 参考ナレッジベース ---\n"
-        for doc in context_docs:
-            if doc: # 取得できたドキュメントのみ追加
-                context += f"ファイル名: {doc.metadata.get('source', 'N/A')}\n"
-                context += doc.page_content + "\n---\n"
+            # 取得したドキュメントを結合してコンテキストを作成
+            context = "--- 参考ナレッジベース ---\n"
+            for doc in retrieved_docs:
+                if doc: # 取得できたドキュメントのみ追加
+                    context += f"ファイル名: {doc.metadata.get('source', 'N/A')}\n"
+                    context += doc.page_content + "\n---\n"
         
         # システムプロンプトを読み込む
         try:
