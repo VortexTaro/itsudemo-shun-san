@@ -9,7 +9,8 @@ import streamlit.components.v1 as components
 
 def generate_source_reasons(client, prompt, docs_with_scores):
     """
-    各参照ドキュメントがユーザーのプロンプトになぜ関連しているのか、具体的な理由を生成します。
+    各参照ドキュメントがユーザーのプロンプトに本当に関連しているかを判断し、
+    関連している場合はその理由を、していない場合はその旨を返します。
     """
     if not docs_with_scores:
         return []
@@ -20,9 +21,9 @@ def generate_source_reasons(client, prompt, docs_with_scores):
     
     formatted_chunks = "\n\n".join(content_list)
 
-    system_prompt = "あなたは、ユーザーの質問と複数のテキスト断片の関係性を分析する専門家です。各テキスト断片がなぜユーザーの質問に関連しているのか、その核心的な理由を特定し、日本語で1文で簡潔に説明してください。"
+    system_prompt = "あなたは、ユーザーの質問と複数のテキスト断片の関係性を分析する専門家です。各テキスト断片がユーザーの質問に本当に関連しているかを厳密に判断し、関連している場合はその核心的な理由を、関連していない場合はその旨を明確に示してください。"
     
-    user_message = f"""以下のユーザーの質問と、それに関連する可能性のあるテキスト断片リストを読み、各テキスト断片の関連性を説明してください。
+    user_message = f"""以下のユーザーの質問と、それに関連する可能性のあるテキスト断片リストを読んでください。
 
 # ユーザーの質問
 {prompt}
@@ -31,12 +32,16 @@ def generate_source_reasons(client, prompt, docs_with_scores):
 {formatted_chunks}
 
 # 指示
-各テキスト断片について、なぜそれがユーザーの質問と関連しているのか、具体的な理由を1文で説明してください。
-説明は、番号を付けてリスト形式で出力してください。説明文だけを書き、他の余計な言葉は含めないでください。
+各テキスト断片について、以下のどちらかの形式で回答してください。
+1.  **本当に関連している場合:** `理由: [ここに具体的な理由を1文で記述]`
+2.  **関連していない場合:** `理由: [IRRELEVANT]`
+
+番号を付けてリスト形式で出力し、他の余計な言葉は含めないでください。
 
 例:
-1. 〇〇という課題に対する具体的な解決策が示されているため。
-2. 質問内のキーワード「△△」に関する詳細な背景を説明しているため。
+1. 理由: 〇〇という課題に対する具体的な解決策が示されているため。
+2. 理由: [IRRELEVANT]
+3. 理由: 質問内のキーワード「△△」に関する詳細な背景を説明しているため。
 """
     try:
         response = client.chat.completions.create(
@@ -49,14 +54,19 @@ def generate_source_reasons(client, prompt, docs_with_scores):
             max_tokens=500,
         )
         reasons_text = response.choices[0].message.content
-        reasons = [line.strip().split('. ', 1)[1] for line in reasons_text.strip().split('\n') if '. ' in line]
+        reasons = []
+        for line in reasons_text.strip().split('\n'):
+            if '理由: ' in line:
+                reason = line.split('理由: ', 1)[1].strip()
+                reasons.append(reason)
         
         if len(reasons) == len(docs_with_scores):
             return reasons
         else:
-            return ["具体的な関連性の特定に失敗しました。"] * len(docs_with_scores)
+            # パース失敗時は全て無関係として扱う
+            return ["[IRRELEVANT]"] * len(docs_with_scores)
     except Exception:
-        return ["具体的な関連性の特定中にエラーが発生しました。"] * len(docs_with_scores)
+        return ["[IRRELEVANT]"] * len(docs_with_scores)
 
 
 # --- 定数 ---
@@ -143,23 +153,32 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
         is_relevant_info_found = False
         if db:
             try:
+                # ステップ1: 類似度スコアに基づき、候補を検索
                 docs_with_scores = db.similarity_search_with_score(prompt, k=5)
+                
                 if docs_with_scores and docs_with_scores[0][1] <= SIMILARITY_THRESHOLD:
-                    is_relevant_info_found = True
                     
-                    # AIに具体的な選択理由を生成させる
+                    # ステップ2: AIによる意味的な関連性チェック(関所)
                     reasons = generate_source_reasons(client, prompt, docs_with_scores)
                     
+                    # ステップ3:本当に関連するドキュメントだけをフィルタリング
+                    relevant_sources = []
                     for (doc, score), reason in zip(docs_with_scores, reasons):
-                        source_docs_with_reasons.append({
-                            "doc": doc,
-                            "score": score,
-                            "reason": reason
-                        })
+                        if reason != "[IRRELEVANT]":
+                            relevant_sources.append({
+                                "doc": doc,
+                                "score": score,
+                                "reason": reason
+                            })
+                    
+                    # ステップ4: 関連するものが1つでもあれば、コンテキストを構築
+                    if relevant_sources:
+                        is_relevant_info_found = True
+                        source_docs_with_reasons = relevant_sources
+                        context += "--- 関連情報 ---\n"
+                        for item in source_docs_with_reasons:
+                            context += item["doc"].page_content + "\n\n"
 
-                    context += "--- 関連情報 ---\n"
-                    for item in source_docs_with_reasons:
-                        context += item["doc"].page_content + "\n\n"
             except Exception as e:
                 st.warning(f"知識ベースの検索中にエラーが発生しました: {e}")
 
