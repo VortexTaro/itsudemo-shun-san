@@ -199,99 +199,59 @@ if prompt := st.chat_input("メッセージを入力してください..."):
         st.rerun()
 
     # 通常の応答処理
-    # ユーザーのメッセージを履歴に追加
     st.session_state.messages.append({"role": "user", "content": prompt, "id": str(uuid.uuid4())})
     
-    # ユーザーのメッセージを即時表示
-    with st.chat_message("user"):
-        st.markdown(prompt)
+    # --- 裏側でアシスタントの応答を完全に生成する ---
+    context = ""
+    source_docs = []
+    offer_shun_request = False 
 
-    # アシスタントの応答を生成・表示
-    with st.chat_message("assistant", avatar="assets/avatar.png"):
-        message_placeholder = st.empty()
-        full_response = ""
-        
-        # --- 知識ベースから関連情報を検索 ---
-        context = ""
-        source_docs = []
-        offer_shun_request = False # しゅんさんへのリクエストを提案するか
-
-        # アドバイスモードの場合は、コンテキスト検索をスキップし、応用的な回答を促す
-        if db:
-            try:
-                # 最大5件の関連ドキュメントを検索
-                docs_with_scores = db.similarity_search_with_score(prompt, k=5) 
-                
-                # 最もスコアの高いドキュメントがしきい値を超えているかチェック
-                if docs_with_scores and docs_with_scores[0][1] >= SIMILARITY_THRESHOLD:
-                    source_docs = docs_with_scores
-                    context += "--- 関連情報 ---\n"
-                    for doc, score in source_docs:
-                        context += doc.page_content + "\n\n"
-                else:
-                    # しきい値を下回った場合、リクエストを提案する
-                    offer_shun_request = True
-                    # コンテキストはAIに渡さない
-                    context = "--- 関連情報 ---\nなし"
-
-
-            except Exception as e:
-                st.warning(f"知識ベースの検索中にエラーが発生しました: {e}")
-
-
-        # システムプロンプトを読み込む
+    if db:
         try:
-            with open("docs/system_prompt.md", "r", encoding="utf-8") as f:
-                system_prompt = f.read()
-        except FileNotFoundError:
-            st.warning("docs/system_prompt.md が見つかりません。") # エラーから警告に変更
-            system_prompt = "You are a helpful assistant." # フォールバック
-
-        # 検索したコンテキストをシステムプロンプトに結合
-        final_system_prompt = system_prompt
-        if context:
-            final_system_prompt += "\n\n" + context
-
-        # LangChainを使わないシンプルなAPI呼び出しに変更
-        try:
-            # システムプロンプトとチャット履歴を結合
-            messages_for_api = [
-                {"role": "system", "content": final_system_prompt},
-                *[
-                    {"role": m["role"], "content": m["content"]}
-                    for m in st.session_state.messages
-                ]
-            ]
-
-            stream = client.chat.completions.create(
-                model="gpt-4o",
-                messages=messages_for_api, # type: ignore
-                stream=True,
-            )
-            for chunk in stream:
-                full_response += (chunk.choices[0].delta.content or "")
-                message_placeholder.markdown(full_response + "▌")
-            message_placeholder.markdown(full_response)
+            docs_with_scores = db.similarity_search_with_score(prompt, k=5)
             
-            # 応答が完了した直後に参照元を表示する
-            if source_docs:
-                with st.expander("参照元ファイル"):
-                    for i, source_item in enumerate(source_docs):
-                        if isinstance(source_item, tuple) and len(source_item) == 2:
-                            doc, score = source_item
-                            source_key = doc.metadata.get('source', 'N/A')
-                            # ライブ表示用の一意なキーを生成
-                            unique_key = f"live_source_{i}_{source_key}"
-                            
-                            st.markdown(f"**ファイル名:** `{source_key}`")
-                            st.markdown(f"**選択理由:** ユーザーの質問と内容が類似しているため (類似度スコア: {score:.4f})")
-                            st.text_area("参照箇所:", value=doc.page_content, height=150, disabled=True, key=unique_key)
-
+            if docs_with_scores and docs_with_scores[0][1] >= SIMILARITY_THRESHOLD:
+                source_docs = docs_with_scores
+                context += "--- 関連情報 ---\n"
+                for doc, score in source_docs:
+                    context += doc.page_content + "\n\n"
+            else:
+                offer_shun_request = True
+                context = "--- 関連情報 ---\nなし"
         except Exception as e:
-            st.error(f"AIとの通信中にエラーが発生しました: {e}")
-            full_response = "申し訳ありません、応答を生成できませんでした。"
+            st.warning(f"知識ベースの検索中にエラーが発生しました: {e}")
+
+    try:
+        with open("docs/system_prompt.md", "r", encoding="utf-8") as f:
+            system_prompt = f.read()
+    except FileNotFoundError:
+        system_prompt = "You are a helpful assistant."
+
+    final_system_prompt = system_prompt
+    if context:
+        final_system_prompt += "\n\n" + context
+
+    try:
+        messages_for_api = [
+            {"role": "system", "content": final_system_prompt},
+            *[
+                {"role": m["role"], "content": m["content"]}
+                for m in st.session_state.messages
+            ]
+        ]
+        
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=messages_for_api, # type: ignore
+            stream=False, # ストリームを無効にして、完全な応答を一度に受け取る
+        )
+        full_response = response.choices[0].message.content or "申し訳ありません、応答を生成できませんでした。"
+
+    except Exception as e:
+        st.error(f"AIとの通信中にエラーが発生しました: {e}")
+        full_response = "申し訳ありません、応答を生成できませんでした。"
     
-    # アシスタントの応答と参照元を履歴に追加
+    # --- 生成された応答をセッション履歴に追加 ---
     st.session_state.messages.append({
         "role": "assistant",
         "content": full_response,
@@ -302,5 +262,5 @@ if prompt := st.chat_input("メッセージを入力してください..."):
         "coaching_mode": False
     })
     
-    # アシスタントの応答が完了したら、ページを再実行して全てを正しく表示
+    # --- ページを再実行して、更新された履歴を一度に表示 ---
     st.rerun() 
