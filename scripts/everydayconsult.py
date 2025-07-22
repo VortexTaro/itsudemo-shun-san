@@ -53,6 +53,8 @@ if "messages" not in st.session_state:
     }]
 if "advice_mode" not in st.session_state:
     st.session_state.advice_mode = False
+if "scroll_to_bottom" not in st.session_state:
+    st.session_state.scroll_to_bottom = False
 
 # --- ヘルパー関数 ---
 def log_request(query_to_log):
@@ -320,8 +322,14 @@ if prompt := st.chat_input("メッセージを入力してください..."):
         "coaching_mode": False
     })
     
-    # 会話の最後に自動でスクロールするためのJavaScriptハック
+    # 次の再描画でスクロールを実行するようにフラグを立てる
+    st.session_state.scroll_to_bottom = True
+    st.rerun()
+
+# --- 自動スクロールの実行 ---
+if st.session_state.get("scroll_to_bottom"):
     components.html(
         "<script>window.scrollTo(0, document.body.scrollHeight);</script>",
         height=0
-    ) 
+    )
+    st.session_state.scroll_to_bottom = False 
