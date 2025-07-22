@@ -90,11 +90,11 @@ def rephrase_and_log_request(user_prompt):
         
         log_content = f"[自動検知] {rephrased_query}"
         log_request(log_content)
-        st.toast("リクエストを自動記録しました📝")
+        # st.toast("リクエストを自動記録しました📝") # ユーザーへの通知を削除
 
     except Exception as e:
         log_request(f"[自動検知エラー] 質問の要約に失敗しました。Error: {e}")
-        st.error(f"リクエストの自動ログ記録中にエラーが発生しました: {e}")
+        # st.error(f"リクエストの自動ログ記録中にエラーが発生しました: {e}") # ユーザーへのエラー通知も削除
 
 
 # --- チャット履歴の表示 ---
