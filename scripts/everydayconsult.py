@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import json
 from openai import OpenAI
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -71,6 +72,22 @@ def generate_source_reasons(client, prompt, docs_with_scores):
 
 # --- 定数 ---
 SIMILARITY_THRESHOLD = 0.7 # 類似度評価のしきい値を再度有効化
+FEEDBACK_LOG_FILE = "feedback.log"
+
+def log_feedback(message_id, user_prompt, assistant_response, feedback):
+    """
+    会話のフィードバックをファイルに記録します。
+    """
+    timestamp = datetime.now().isoformat()
+    log_entry = {
+        "timestamp": timestamp,
+        "message_id": message_id,
+        "user_prompt": user_prompt,
+        "assistant_response": assistant_response,
+        "feedback": feedback
+    }
+    with open(FEEDBACK_LOG_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
 
 # --- 初期設定 ---
 st.title("いつでもしゅんさん")
@@ -107,12 +124,46 @@ if "messages" not in st.session_state:
     }]
 if "scroll_to_bottom" not in st.session_state:
     st.session_state.scroll_to_bottom = False
+if 'feedback_given' not in st.session_state:
+    st.session_state.feedback_given = {}
 
 # --- チャット履歴の表示 ---
-for msg in st.session_state.messages:
+for i, msg in enumerate(st.session_state.messages):
     avatar_url = "assets/avatar.png" if msg["role"] == "assistant" else "user"
     with st.chat_message(msg["role"], avatar=avatar_url):
         st.markdown(msg["content"])
+        
+        # --- フィードバック機能 ---
+        if msg["role"] == "assistant":
+            feedback_status = st.session_state.feedback_given.get(msg["id"])
+            
+            if not feedback_status:
+                cols = st.columns([1, 1, 8])
+                with cols[0]:
+                    if st.button("👍", key=f"good_{msg['id']}", help="この回答に満足"):
+                        user_prompt = ""
+                        if i > 0 and st.session_state.messages[i-1]["role"] == "user":
+                            user_prompt = st.session_state.messages[i-1]["content"]
+                        log_feedback(msg['id'], user_prompt, msg['content'], "good")
+                        st.session_state.feedback_given[msg['id']] = 'good'
+                        st.toast("フィードバックをありがとうございます！")
+                        st.rerun()
+                
+                with cols[1]:
+                    if st.button("👎", key=f"bad_{msg['id']}", help="この回答に不満"):
+                        user_prompt = ""
+                        if i > 0 and st.session_state.messages[i-1]["role"] == "user":
+                            user_prompt = st.session_state.messages[i-1]["content"]
+                        log_feedback(msg['id'], user_prompt, msg['content'], "bad")
+                        st.session_state.feedback_given[msg['id']] = 'bad'
+                        st.toast("改善のためのフィードバック、感謝します。")
+                        st.rerun()
+            else:
+                st.markdown(
+                    f"<span style='color: #4A4A4A;'>{'👍' if feedback_status == 'good' else '👎'} フィードバック済み</span>", 
+                    unsafe_allow_html=True
+                )
+
         # アシスタントのメッセージで、かつ参照元情報がある場合
         if msg["role"] == "assistant" and "sources" in msg and msg["sources"]:
             with st.expander("参照元ファイル"):

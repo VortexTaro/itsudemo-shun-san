@@ -45,3 +45,5 @@ data/google_doc_content.txt
 data/google_sheet_content.csv
 data/token.pickle
 data/token_sheets.pickle 
+
+feedback.log 
