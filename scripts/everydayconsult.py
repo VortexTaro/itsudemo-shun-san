@@ -210,7 +210,8 @@ if prompt := st.chat_input("メッセージを入力してください..."):
         try:
             docs_with_scores = db.similarity_search_with_score(prompt, k=5)
             
-            if docs_with_scores and docs_with_scores[0][1] >= SIMILARITY_THRESHOLD:
+            # 類似度スコアはL2距離なので、値が小さいほど類似度が高い。比較演算子を修正。
+            if docs_with_scores and docs_with_scores[0][1] <= SIMILARITY_THRESHOLD:
                 source_docs = docs_with_scores
                 context += "--- 関連情報 ---\n"
                 for doc, score in source_docs:
@@ -225,6 +226,7 @@ if prompt := st.chat_input("メッセージを入力してください..."):
         with open("docs/system_prompt.md", "r", encoding="utf-8") as f:
             system_prompt = f.read()
     except FileNotFoundError:
+        st.warning("docs/system_prompt.md が見つかりません。")
         system_prompt = "You are a helpful assistant."
 
     final_system_prompt = system_prompt
