@@ -1,0 +1,76 @@
+---
+---
+
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>引き寄せノートの裏技</title>
+		<style>
+			.balloon {
+				position: relative;
+				display: inline-block;
+				margin: 1.5em 0;
+				padding: 7px 10px;
+				min-width: 120px;
+				max-width: 100%;
+				color: #555;
+				font-size: 16px;
+				background: #e0edff;
+				border-radius: 10px;
+			}
+
+			.balloon:before {
+				content: "";
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				margin-left: -15px;
+				border: 15px solid transparent;
+				border-top: 15px solid #e0edff;
+			}
+
+			.italic-text {
+				font-style: italic;
+			}
+
+			.key-phrase {
+				position: relative;
+				padding: 1.5em 2em;
+				margin: 2em 0;
+			}
+
+			.key-phrase::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 30px;
+				height: 30px;
+				border-top: 3px solid #555;
+				border-left: 3px solid #555;
+			}
+
+			.key-phrase::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				width: 30px;
+				height: 30px;
+				border-bottom: 3px solid #555;
+				border-right: 3px solid #555;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="balloon">
+			こうすれば願望の引き寄せはカンタンに起こります
+		</div>
+		<div class="key-phrase">
+			<h1>30代で習得しておきたい<br>引き寄せノートの裏技</h1>
+		</div>
+	</body>
+</html> 

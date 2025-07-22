@@ -1,0 +1,3959 @@
+{
+    "title": "現実創造",
+    "body": {
+        "content": [
+            {
+                "endIndex": 1,
+                "sectionBreak": {
+                    "sectionStyle": {
+                        "columnSeparatorStyle": "NONE",
+                        "contentDirection": "LEFT_TO_RIGHT",
+                        "sectionType": "CONTINUOUS"
+                    }
+                }
+            },
+            {
+                "startIndex": 1,
+                "endIndex": 15,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 1,
+                            "endIndex": 15,
+                            "textRun": {
+                                "content": "現実化のための前提基礎知識\n",
+                                "textStyle": {
+                                    "bold": true,
+                                    "fontSize": {
+                                        "magnitude": 23,
+                                        "unit": "PT"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "headingId": "h.jd7tu0pwo5n6",
+                        "namedStyleType": "HEADING_1",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 24,
+                            "unit": "PT"
+                        },
+                        "keepLinesTogether": false,
+                        "keepWithNext": false
+                    }
+                }
+            },
+            {
+                "startIndex": 15,
+                "endIndex": 37,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 15,
+                            "endIndex": 37,
+                            "textRun": {
+                                "content": "― なぜ“イメージ”が現実をつくるのか ―\n",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 37,
+                "endIndex": 77,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 37,
+                            "endIndex": 76,
+                            "textRun": {
+                                "content": "https://vimeo.com/1006242679/52357630ee",
+                                "textStyle": {
+                                    "bold": true,
+                                    "underline": true,
+                                    "foregroundColor": {
+                                        "color": {
+                                            "rgbColor": {
+                                                "red": 0.06666667,
+                                                "green": 0.33333334,
+                                                "blue": 0.8
+                                            }
+                                        }
+                                    },
+                                    "link": {
+                                        "url": "https://vimeo.com/1006242679/52357630ee"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 76,
+                            "endIndex": 77,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 77,
+                "endIndex": 78,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 77,
+                            "endIndex": 78,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 78,
+                "endIndex": 80,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 78,
+                            "endIndex": 79,
+                            "horizontalRule": {
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 79,
+                            "endIndex": 80,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT"
+                    }
+                }
+            },
+            {
+                "startIndex": 80,
+                "endIndex": 106,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 80,
+                            "endIndex": 106,
+                            "textRun": {
+                                "content": "◆ 本来、イメージは「現実」になるようにできている\n",
+                                "textStyle": {
+                                    "bold": true,
+                                    "fontSize": {
+                                        "magnitude": 17,
+                                        "unit": "PT"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "headingId": "h.1z7k27dlpcaz",
+                        "namedStyleType": "HEADING_2",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceBelow": {
+                            "magnitude": 4,
+                            "unit": "PT"
+                        },
+                        "keepLinesTogether": false,
+                        "keepWithNext": false
+                    }
+                }
+            },
+            {
+                "startIndex": 106,
+                "endIndex": 161,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 106,
+                            "endIndex": 161,
+                            "textRun": {
+                                "content": "私たちは、「願ったことが叶うかどうかは運しだい」「イメージしたことが現実になるとは限らない」と思いがちです。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 161,
+                "endIndex": 199,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 161,
+                            "endIndex": 168,
+                            "textRun": {
+                                "content": "でも実は――\u000b",
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 168,
+                            "endIndex": 199,
+                            "textRun": {
+                                "content": "本来の世界では、イメージしたものは“即”現実になっています。\n",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 199,
+                "endIndex": 201,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 199,
+                            "endIndex": 200,
+                            "horizontalRule": {
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 200,
+                            "endIndex": 201,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT"
+                    }
+                }
+            },
+            {
+                "startIndex": 201,
+                "endIndex": 223,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 201,
+                            "endIndex": 223,
+                            "textRun": {
+                                "content": "【例：こんな話、聞いたことありませんか？】\n",
+                                "textStyle": {
+                                    "bold": true,
+                                    "foregroundColor": {
+                                        "color": {
+                                            "rgbColor": {}
+                                        }
+                                    },
+                                    "fontSize": {
+                                        "magnitude": 13,
+                                        "unit": "PT"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "headingId": "h.nsk987jgkxls",
+                        "namedStyleType": "HEADING_3",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 14,
+                            "unit": "PT"
+                        },
+                        "keepLinesTogether": false,
+                        "keepWithNext": false
+                    }
+                }
+            },
+            {
+                "startIndex": 223,
+                "endIndex": 269,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 223,
+                            "endIndex": 238,
+                            "textRun": {
+                                "content": "夢と現実の区別がつかない経験\u000b",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 238,
+                            "endIndex": 269,
+                            "textRun": {
+                                "content": "　→ 夢の中では「これが現実」として感じている状態ですよね。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.xa1vdwc7qi4n",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 269,
+                "endIndex": 323,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 269,
+                            "endIndex": 283,
+                            "textRun": {
+                                "content": "プラシーボ効果（偽薬効果）\u000b",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 283,
+                            "endIndex": 323,
+                            "textRun": {
+                                "content": "　→ 本当は効果がないはずの薬でも、「効く」と信じると効果が現れることがある。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.xa1vdwc7qi4n",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 323,
+                "endIndex": 391,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 323,
+                            "endIndex": 346,
+                            "textRun": {
+                                "content": "氷を“熱い炭”と思い込ませて皮膚に当てる実験\u000b",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 346,
+                            "endIndex": 391,
+                            "textRun": {
+                                "content": "　→ 実際は冷たい氷なのに、本人が「火傷する」と思い込んでいると本当に火傷の症状が出る。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.xa1vdwc7qi4n",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 391,
+                "endIndex": 424,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 391,
+                            "endIndex": 395,
+                            "textRun": {
+                                "content": "つまり、",
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 395,
+                            "endIndex": 419,
+                            "textRun": {
+                                "content": "強くイメージしたことは、物理的な反応すら生み出す",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 419,
+                            "endIndex": 424,
+                            "textRun": {
+                                "content": "のです。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 424,
+                "endIndex": 426,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 424,
+                            "endIndex": 425,
+                            "horizontalRule": {
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 425,
+                            "endIndex": 426,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT"
+                    }
+                }
+            },
+            {
+                "startIndex": 426,
+                "endIndex": 451,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 426,
+                            "endIndex": 451,
+                            "textRun": {
+                                "content": "◆ 現実とイメージの“境界線”は、本来存在しない\n",
+                                "textStyle": {
+                                    "bold": true,
+                                    "fontSize": {
+                                        "magnitude": 17,
+                                        "unit": "PT"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "headingId": "h.qgn0tda4j9y",
+                        "namedStyleType": "HEADING_2",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceBelow": {
+                            "magnitude": 4,
+                            "unit": "PT"
+                        },
+                        "keepLinesTogether": false,
+                        "keepWithNext": false
+                    }
+                }
+            },
+            {
+                "startIndex": 451,
+                "endIndex": 486,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 451,
+                            "endIndex": 486,
+                            "textRun": {
+                                "content": "私たちの多くは、\u000b「イメージはイメージ、現実は現実」と考えています。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 486,
+                "endIndex": 519,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 486,
+                            "endIndex": 493,
+                            "textRun": {
+                                "content": "でも実は――\u000b",
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 493,
+                            "endIndex": 519,
+                            "textRun": {
+                                "content": "イメージと現実の間に“本当の区切り”はありません。\n",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 519,
+                "endIndex": 521,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 519,
+                            "endIndex": 520,
+                            "horizontalRule": {
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 520,
+                            "endIndex": 521,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT"
+                    }
+                }
+            },
+            {
+                "startIndex": 521,
+                "endIndex": 541,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 521,
+                            "endIndex": 541,
+                            "textRun": {
+                                "content": "◆ なぜ現実にならないことがあるのか？\n",
+                                "textStyle": {
+                                    "bold": true,
+                                    "fontSize": {
+                                        "magnitude": 17,
+                                        "unit": "PT"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "headingId": "h.mljp8occr9wz",
+                        "namedStyleType": "HEADING_2",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceBelow": {
+                            "magnitude": 4,
+                            "unit": "PT"
+                        },
+                        "keepLinesTogether": false,
+                        "keepWithNext": false
+                    }
+                }
+            },
+            {
+                "startIndex": 541,
+                "endIndex": 574,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 541,
+                            "endIndex": 545,
+                            "textRun": {
+                                "content": "それは、",
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 545,
+                            "endIndex": 564,
+                            "textRun": {
+                                "content": "私たちが今いる“3次元の地球”のルール",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 564,
+                            "endIndex": 574,
+                            "textRun": {
+                                "content": "に原因があります。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 574,
+                "endIndex": 602,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 574,
+                            "endIndex": 590,
+                            "textRun": {
+                                "content": "「本来の世界（高次元）」では、\u000b",
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 590,
+                            "endIndex": 598,
+                            "textRun": {
+                                "content": "イメージ＝即現実",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 598,
+                            "endIndex": 602,
+                            "textRun": {
+                                "content": "です。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 30,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 30,
+                            "unit": "PT"
+                        },
+                        "indentEnd": {
+                            "magnitude": 30,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 602,
+                "endIndex": 628,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 602,
+                            "endIndex": 628,
+                            "textRun": {
+                                "content": "しかし、3次元では以下のような“制限”があります。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 628,
+                "endIndex": 641,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 628,
+                            "endIndex": 641,
+                            "textRun": {
+                                "content": "時間の流れ（タイムラグ）\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.24y8jsilcb8m",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 641,
+                "endIndex": 650,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 641,
+                            "endIndex": 650,
+                            "textRun": {
+                                "content": "エネルギーの摩擦\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.24y8jsilcb8m",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 650,
+                "endIndex": 658,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 650,
+                            "endIndex": 658,
+                            "textRun": {
+                                "content": "不一致な周波数\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.24y8jsilcb8m",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 658,
+                "endIndex": 669,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 658,
+                            "endIndex": 669,
+                            "textRun": {
+                                "content": "自我や思考のブロック\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.24y8jsilcb8m",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 669,
+                "endIndex": 706,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 669,
+                            "endIndex": 675,
+                            "textRun": {
+                                "content": "だからこそ、",
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 675,
+                            "endIndex": 693,
+                            "textRun": {
+                                "content": "イメージした瞬間に現実化しないように",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 693,
+                            "endIndex": 706,
+                            "textRun": {
+                                "content": "なっているだけなのです。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 706,
+                "endIndex": 708,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 706,
+                            "endIndex": 707,
+                            "horizontalRule": {
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 707,
+                            "endIndex": 708,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT"
+                    }
+                }
+            },
+            {
+                "startIndex": 708,
+                "endIndex": 725,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 708,
+                            "endIndex": 725,
+                            "textRun": {
+                                "content": "◆ このように考えてみてください\n",
+                                "textStyle": {
+                                    "bold": true,
+                                    "fontSize": {
+                                        "magnitude": 17,
+                                        "unit": "PT"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "headingId": "h.xbn2dchamybc",
+                        "namedStyleType": "HEADING_2",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceBelow": {
+                            "magnitude": 4,
+                            "unit": "PT"
+                        },
+                        "keepLinesTogether": false,
+                        "keepWithNext": false
+                    }
+                }
+            },
+            {
+                "startIndex": 725,
+                "endIndex": 744,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 725,
+                            "endIndex": 744,
+                            "textRun": {
+                                "content": "「願いは叶うか叶わないか」ではなく、\n",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.9gx2nxaluda3",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 744,
+                "endIndex": 764,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 744,
+                            "endIndex": 764,
+                            "textRun": {
+                                "content": "「本来は100%叶うようにできている」\n",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.9gx2nxaluda3",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 764,
+                "endIndex": 822,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 764,
+                            "endIndex": 768,
+                            "textRun": {
+                                "content": "ただし、",
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 768,
+                            "endIndex": 786,
+                            "textRun": {
+                                "content": "地球の現実は“タイムラグ”があるだけ",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 786,
+                            "endIndex": 822,
+                            "textRun": {
+                                "content": "。\u000bだから現実化が「遅い」「ズレる」「一度否定する」ことがあるんです。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 822,
+                "endIndex": 824,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 822,
+                            "endIndex": 823,
+                            "horizontalRule": {
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 823,
+                            "endIndex": 824,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT"
+                    }
+                }
+            },
+            {
+                "startIndex": 824,
+                "endIndex": 841,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 824,
+                            "endIndex": 841,
+                            "textRun": {
+                                "content": "◆ なぜこの考え方が重要なのか？\n",
+                                "textStyle": {
+                                    "bold": true,
+                                    "fontSize": {
+                                        "magnitude": 17,
+                                        "unit": "PT"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "headingId": "h.aqfxavs0ados",
+                        "namedStyleType": "HEADING_2",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceBelow": {
+                            "magnitude": 4,
+                            "unit": "PT"
+                        },
+                        "keepLinesTogether": false,
+                        "keepWithNext": false
+                    }
+                }
+            },
+            {
+                "startIndex": 841,
+                "endIndex": 871,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 841,
+                            "endIndex": 871,
+                            "textRun": {
+                                "content": "イメージが現実になる世界を「信じられない」と感じていると…\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 871,
+                "endIndex": 895,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 871,
+                            "endIndex": 895,
+                            "textRun": {
+                                "content": "イメージしても途中で「無理かも」と思ってしまう\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.t9jq22atrpid",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 895,
+                "endIndex": 924,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 895,
+                            "endIndex": 924,
+                            "textRun": {
+                                "content": "タイムラグに不安や焦りを感じ、オーダーを“途中で手放す”\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.t9jq22atrpid",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 924,
+                "endIndex": 951,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 924,
+                            "endIndex": 951,
+                            "textRun": {
+                                "content": "周波数がズレてしまい、望まない現実を引き寄せてしまう\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        }
+                    },
+                    "bullet": {
+                        "listId": "kix.t9jq22atrpid",
+                        "textStyle": {}
+                    }
+                }
+            },
+            {
+                "startIndex": 951,
+                "endIndex": 976,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 951,
+                            "endIndex": 960,
+                            "textRun": {
+                                "content": "こういったブレが、",
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 960,
+                            "endIndex": 972,
+                            "textRun": {
+                                "content": "現実化を妨げる最大の原因",
+                                "textStyle": {
+                                    "bold": true
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 972,
+                            "endIndex": 976,
+                            "textRun": {
+                                "content": "です。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 976,
+                "endIndex": 978,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 976,
+                            "endIndex": 977,
+                            "horizontalRule": {
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 977,
+                            "endIndex": 978,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT"
+                    }
+                }
+            },
+            {
+                "startIndex": 978,
+                "endIndex": 1002,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 978,
+                            "endIndex": 1002,
+                            "textRun": {
+                                "content": "◆ まとめ：現実化を加速させる“考え方の土台”\n",
+                                "textStyle": {
+                                    "bold": true,
+                                    "fontSize": {
+                                        "magnitude": 17,
+                                        "unit": "PT"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "headingId": "h.7u9eaunem08o",
+                        "namedStyleType": "HEADING_2",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceBelow": {
+                            "magnitude": 4,
+                            "unit": "PT"
+                        },
+                        "keepLinesTogether": false,
+                        "keepWithNext": false
+                    }
+                }
+            },
+            {
+                "startIndex": 1002,
+                "endIndex": 1129,
+                "table": {
+                    "rows": 4,
+                    "columns": 3,
+                    "tableRows": [
+                        {
+                            "startIndex": 1003,
+                            "endIndex": 1020,
+                            "tableCells": [
+                                {
+                                    "startIndex": 1004,
+                                    "endIndex": 1010,
+                                    "content": [
+                                        {
+                                            "startIndex": 1005,
+                                            "endIndex": 1010,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1005,
+                                                        "endIndex": 1009,
+                                                        "textRun": {
+                                                            "content": "思い込み",
+                                                            "textStyle": {
+                                                                "bold": true
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "startIndex": 1009,
+                                                        "endIndex": 1010,
+                                                        "textRun": {
+                                                            "content": "\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "alignment": "CENTER",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                },
+                                {
+                                    "startIndex": 1010,
+                                    "endIndex": 1013,
+                                    "content": [
+                                        {
+                                            "startIndex": 1011,
+                                            "endIndex": 1013,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1011,
+                                                        "endIndex": 1012,
+                                                        "textRun": {
+                                                            "content": "→",
+                                                            "textStyle": {
+                                                                "bold": true
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "startIndex": 1012,
+                                                        "endIndex": 1013,
+                                                        "textRun": {
+                                                            "content": "\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "alignment": "CENTER",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                },
+                                {
+                                    "startIndex": 1013,
+                                    "endIndex": 1020,
+                                    "content": [
+                                        {
+                                            "startIndex": 1014,
+                                            "endIndex": 1020,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1014,
+                                                        "endIndex": 1019,
+                                                        "textRun": {
+                                                            "content": "新しい前提",
+                                                            "textStyle": {
+                                                                "bold": true
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "startIndex": 1019,
+                                                        "endIndex": 1020,
+                                                        "textRun": {
+                                                            "content": "\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "alignment": "CENTER",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                }
+                            ],
+                            "tableRowStyle": {
+                                "minRowHeight": {
+                                    "magnitude": 28.75,
+                                    "unit": "PT"
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 1020,
+                            "endIndex": 1052,
+                            "tableCells": [
+                                {
+                                    "startIndex": 1021,
+                                    "endIndex": 1034,
+                                    "content": [
+                                        {
+                                            "startIndex": 1022,
+                                            "endIndex": 1034,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1022,
+                                                        "endIndex": 1034,
+                                                        "textRun": {
+                                                            "content": "願いが叶うかは運しだい\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                },
+                                {
+                                    "startIndex": 1034,
+                                    "endIndex": 1037,
+                                    "content": [
+                                        {
+                                            "startIndex": 1035,
+                                            "endIndex": 1037,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1035,
+                                                        "endIndex": 1037,
+                                                        "textRun": {
+                                                            "content": "→\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                },
+                                {
+                                    "startIndex": 1037,
+                                    "endIndex": 1052,
+                                    "content": [
+                                        {
+                                            "startIndex": 1038,
+                                            "endIndex": 1052,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1038,
+                                                        "endIndex": 1052,
+                                                        "textRun": {
+                                                            "content": "願いは本来“100%叶う”\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                }
+                            ],
+                            "tableRowStyle": {
+                                "minRowHeight": {
+                                    "magnitude": 28.75,
+                                    "unit": "PT"
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 1052,
+                            "endIndex": 1087,
+                            "tableCells": [
+                                {
+                                    "startIndex": 1053,
+                                    "endIndex": 1067,
+                                    "content": [
+                                        {
+                                            "startIndex": 1054,
+                                            "endIndex": 1067,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1054,
+                                                        "endIndex": 1067,
+                                                        "textRun": {
+                                                            "content": "イメージしても意味がない\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                },
+                                {
+                                    "startIndex": 1067,
+                                    "endIndex": 1070,
+                                    "content": [
+                                        {
+                                            "startIndex": 1068,
+                                            "endIndex": 1070,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1068,
+                                                        "endIndex": 1070,
+                                                        "textRun": {
+                                                            "content": "→\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                },
+                                {
+                                    "startIndex": 1070,
+                                    "endIndex": 1087,
+                                    "content": [
+                                        {
+                                            "startIndex": 1071,
+                                            "endIndex": 1087,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1071,
+                                                        "endIndex": 1087,
+                                                        "textRun": {
+                                                            "content": "イメージが現実化のスタート地点\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                }
+                            ],
+                            "tableRowStyle": {
+                                "minRowHeight": {
+                                    "magnitude": 28.75,
+                                    "unit": "PT"
+                                }
+                            }
+                        },
+                        {
+                            "startIndex": 1087,
+                            "endIndex": 1128,
+                            "tableCells": [
+                                {
+                                    "startIndex": 1088,
+                                    "endIndex": 1104,
+                                    "content": [
+                                        {
+                                            "startIndex": 1089,
+                                            "endIndex": 1104,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1089,
+                                                        "endIndex": 1104,
+                                                        "textRun": {
+                                                            "content": "タイムラグがあると不安になる\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                },
+                                {
+                                    "startIndex": 1104,
+                                    "endIndex": 1107,
+                                    "content": [
+                                        {
+                                            "startIndex": 1105,
+                                            "endIndex": 1107,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1105,
+                                                        "endIndex": 1107,
+                                                        "textRun": {
+                                                            "content": "→\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                },
+                                {
+                                    "startIndex": 1107,
+                                    "endIndex": 1128,
+                                    "content": [
+                                        {
+                                            "startIndex": 1108,
+                                            "endIndex": 1128,
+                                            "paragraph": {
+                                                "elements": [
+                                                    {
+                                                        "startIndex": 1108,
+                                                        "endIndex": 1128,
+                                                        "textRun": {
+                                                            "content": "タイムラグは3次元の仕組み、自然な現象\n",
+                                                            "textStyle": {}
+                                                        }
+                                                    }
+                                                ],
+                                                "paragraphStyle": {
+                                                    "namedStyleType": "NORMAL_TEXT",
+                                                    "direction": "LEFT_TO_RIGHT"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "tableCellStyle": {
+                                        "rowSpan": 1,
+                                        "columnSpan": 1,
+                                        "borderLeft": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderRight": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderTop": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "borderBottom": {
+                                            "color": {
+                                                "color": {
+                                                    "rgbColor": {}
+                                                }
+                                            },
+                                            "width": {
+                                                "unit": "PT"
+                                            },
+                                            "dashStyle": "SOLID"
+                                        },
+                                        "paddingLeft": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingRight": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingTop": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "paddingBottom": {
+                                            "magnitude": 5,
+                                            "unit": "PT"
+                                        },
+                                        "contentAlignment": "TOP"
+                                    }
+                                }
+                            ],
+                            "tableRowStyle": {
+                                "minRowHeight": {
+                                    "magnitude": 28.75,
+                                    "unit": "PT"
+                                }
+                            }
+                        }
+                    ],
+                    "tableStyle": {
+                        "tableColumnProperties": [
+                            {
+                                "widthType": "FIXED_WIDTH",
+                                "width": {
+                                    "magnitude": 178,
+                                    "unit": "PT"
+                                }
+                            },
+                            {
+                                "widthType": "FIXED_WIDTH",
+                                "width": {
+                                    "magnitude": 23.5,
+                                    "unit": "PT"
+                                }
+                            },
+                            {
+                                "widthType": "FIXED_WIDTH",
+                                "width": {
+                                    "magnitude": 233.5,
+                                    "unit": "PT"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "startIndex": 1129,
+                "endIndex": 1131,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 1129,
+                            "endIndex": 1130,
+                            "horizontalRule": {
+                                "textStyle": {}
+                            }
+                        },
+                        {
+                            "startIndex": 1130,
+                            "endIndex": 1131,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT"
+                    }
+                }
+            },
+            {
+                "startIndex": 1131,
+                "endIndex": 1137,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 1131,
+                            "endIndex": 1137,
+                            "textRun": {
+                                "content": "◆ 最後に\n",
+                                "textStyle": {
+                                    "bold": true,
+                                    "fontSize": {
+                                        "magnitude": 17,
+                                        "unit": "PT"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "headingId": "h.hnak67r8sd40",
+                        "namedStyleType": "HEADING_2",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceBelow": {
+                            "magnitude": 4,
+                            "unit": "PT"
+                        },
+                        "keepLinesTogether": false,
+                        "keepWithNext": false
+                    }
+                }
+            },
+            {
+                "startIndex": 1137,
+                "endIndex": 1177,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 1137,
+                            "endIndex": 1177,
+                            "textRun": {
+                                "content": "この「現実化の前提」が腑に落ちると、\u000bあなたのオーダーの力は一気に加速します。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 1177,
+                "endIndex": 1217,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 1177,
+                            "endIndex": 1217,
+                            "textRun": {
+                                "content": "無理に思い込まなくて大丈夫。\u000b疑ってもいい。ただ、“考え続けて”みてください。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "indentFirstLine": {
+                            "magnitude": 30,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 30,
+                            "unit": "PT"
+                        },
+                        "indentEnd": {
+                            "magnitude": 30,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 1217,
+                "endIndex": 1257,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 1217,
+                            "endIndex": 1257,
+                            "textRun": {
+                                "content": "「イメージは本来、現実になる」\u000bその世界の見方に、一歩ずつ慣れていきましょう。\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT",
+                        "spaceAbove": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        },
+                        "spaceBelow": {
+                            "magnitude": 12,
+                            "unit": "PT"
+                        }
+                    }
+                }
+            },
+            {
+                "startIndex": 1257,
+                "endIndex": 1258,
+                "paragraph": {
+                    "elements": [
+                        {
+                            "startIndex": 1257,
+                            "endIndex": 1258,
+                            "textRun": {
+                                "content": "\n",
+                                "textStyle": {}
+                            }
+                        }
+                    ],
+                    "paragraphStyle": {
+                        "namedStyleType": "NORMAL_TEXT",
+                        "direction": "LEFT_TO_RIGHT"
+                    }
+                }
+            }
+        ]
+    },
+    "documentStyle": {
+        "background": {
+            "color": {}
+        },
+        "pageNumberStart": 1,
+        "marginTop": {
+            "magnitude": 72,
+            "unit": "PT"
+        },
+        "marginBottom": {
+            "magnitude": 72,
+            "unit": "PT"
+        },
+        "marginRight": {
+            "magnitude": 72,
+            "unit": "PT"
+        },
+        "marginLeft": {
+            "magnitude": 72,
+            "unit": "PT"
+        },
+        "pageSize": {
+            "height": {
+                "magnitude": 841.8897637795277,
+                "unit": "PT"
+            },
+            "width": {
+                "magnitude": 595.2755905511812,
+                "unit": "PT"
+            }
+        },
+        "marginHeader": {
+            "magnitude": 36,
+            "unit": "PT"
+        },
+        "marginFooter": {
+            "magnitude": 36,
+            "unit": "PT"
+        },
+        "useCustomHeaderFooterMargins": true
+    },
+    "namedStyles": {
+        "styles": [
+            {
+                "namedStyleType": "NORMAL_TEXT",
+                "textStyle": {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false,
+                    "strikethrough": false,
+                    "smallCaps": false,
+                    "backgroundColor": {},
+                    "foregroundColor": {
+                        "color": {
+                            "rgbColor": {}
+                        }
+                    },
+                    "fontSize": {
+                        "magnitude": 11,
+                        "unit": "PT"
+                    },
+                    "weightedFontFamily": {
+                        "fontFamily": "Arial",
+                        "weight": 400
+                    },
+                    "baselineOffset": "NONE"
+                },
+                "paragraphStyle": {
+                    "namedStyleType": "NORMAL_TEXT",
+                    "alignment": "START",
+                    "lineSpacing": 115,
+                    "direction": "LEFT_TO_RIGHT",
+                    "spacingMode": "COLLAPSE_LISTS",
+                    "spaceAbove": {
+                        "unit": "PT"
+                    },
+                    "spaceBelow": {
+                        "unit": "PT"
+                    },
+                    "borderBetween": {
+                        "color": {},
+                        "width": {
+                            "unit": "PT"
+                        },
+                        "padding": {
+                            "unit": "PT"
+                        },
+                        "dashStyle": "SOLID"
+                    },
+                    "borderTop": {
+                        "color": {},
+                        "width": {
+                            "unit": "PT"
+                        },
+                        "padding": {
+                            "unit": "PT"
+                        },
+                        "dashStyle": "SOLID"
+                    },
+                    "borderBottom": {
+                        "color": {},
+                        "width": {
+                            "unit": "PT"
+                        },
+                        "padding": {
+                            "unit": "PT"
+                        },
+                        "dashStyle": "SOLID"
+                    },
+                    "borderLeft": {
+                        "color": {},
+                        "width": {
+                            "unit": "PT"
+                        },
+                        "padding": {
+                            "unit": "PT"
+                        },
+                        "dashStyle": "SOLID"
+                    },
+                    "borderRight": {
+                        "color": {},
+                        "width": {
+                            "unit": "PT"
+                        },
+                        "padding": {
+                            "unit": "PT"
+                        },
+                        "dashStyle": "SOLID"
+                    },
+                    "indentFirstLine": {
+                        "unit": "PT"
+                    },
+                    "indentStart": {
+                        "unit": "PT"
+                    },
+                    "indentEnd": {
+                        "unit": "PT"
+                    },
+                    "keepLinesTogether": false,
+                    "keepWithNext": false,
+                    "avoidWidowAndOrphan": true,
+                    "shading": {
+                        "backgroundColor": {}
+                    },
+                    "pageBreakBefore": false
+                }
+            },
+            {
+                "namedStyleType": "HEADING_1",
+                "textStyle": {
+                    "fontSize": {
+                        "magnitude": 20,
+                        "unit": "PT"
+                    }
+                },
+                "paragraphStyle": {
+                    "namedStyleType": "NORMAL_TEXT",
+                    "direction": "LEFT_TO_RIGHT",
+                    "spaceAbove": {
+                        "magnitude": 20,
+                        "unit": "PT"
+                    },
+                    "spaceBelow": {
+                        "magnitude": 6,
+                        "unit": "PT"
+                    },
+                    "keepLinesTogether": true,
+                    "keepWithNext": true,
+                    "pageBreakBefore": false
+                }
+            },
+            {
+                "namedStyleType": "HEADING_2",
+                "textStyle": {
+                    "bold": false,
+                    "fontSize": {
+                        "magnitude": 16,
+                        "unit": "PT"
+                    }
+                },
+                "paragraphStyle": {
+                    "namedStyleType": "NORMAL_TEXT",
+                    "direction": "LEFT_TO_RIGHT",
+                    "spaceAbove": {
+                        "magnitude": 18,
+                        "unit": "PT"
+                    },
+                    "spaceBelow": {
+                        "magnitude": 6,
+                        "unit": "PT"
+                    },
+                    "keepLinesTogether": true,
+                    "keepWithNext": true,
+                    "pageBreakBefore": false
+                }
+            },
+            {
+                "namedStyleType": "HEADING_3",
+                "textStyle": {
+                    "bold": false,
+                    "foregroundColor": {
+                        "color": {
+                            "rgbColor": {
+                                "red": 0.2627451,
+                                "green": 0.2627451,
+                                "blue": 0.2627451
+                            }
+                        }
+                    },
+                    "fontSize": {
+                        "magnitude": 14,
+                        "unit": "PT"
+                    }
+                },
+                "paragraphStyle": {
+                    "namedStyleType": "NORMAL_TEXT",
+                    "direction": "LEFT_TO_RIGHT",
+                    "spaceAbove": {
+                        "magnitude": 16,
+                        "unit": "PT"
+                    },
+                    "spaceBelow": {
+                        "magnitude": 4,
+                        "unit": "PT"
+                    },
+                    "keepLinesTogether": true,
+                    "keepWithNext": true,
+                    "pageBreakBefore": false
+                }
+            },
+            {
+                "namedStyleType": "HEADING_4",
+                "textStyle": {
+                    "foregroundColor": {
+                        "color": {
+                            "rgbColor": {
+                                "red": 0.4,
+                                "green": 0.4,
+                                "blue": 0.4
+                            }
+                        }
+                    },
+                    "fontSize": {
+                        "magnitude": 12,
+                        "unit": "PT"
+                    }
+                },
+                "paragraphStyle": {
+                    "namedStyleType": "NORMAL_TEXT",
+                    "direction": "LEFT_TO_RIGHT",
+                    "spaceAbove": {
+                        "magnitude": 14,
+                        "unit": "PT"
+                    },
+                    "spaceBelow": {
+                        "magnitude": 4,
+                        "unit": "PT"
+                    },
+                    "keepLinesTogether": true,
+                    "keepWithNext": true,
+                    "pageBreakBefore": false
+                }
+            },
+            {
+                "namedStyleType": "HEADING_5",
+                "textStyle": {
+                    "foregroundColor": {
+                        "color": {
+                            "rgbColor": {
+                                "red": 0.4,
+                                "green": 0.4,
+                                "blue": 0.4
+                            }
+                        }
+                    },
+                    "fontSize": {
+                        "magnitude": 11,
+                        "unit": "PT"
+                    }
+                },
+                "paragraphStyle": {
+                    "namedStyleType": "NORMAL_TEXT",
+                    "direction": "LEFT_TO_RIGHT",
+                    "spaceAbove": {
+                        "magnitude": 12,
+                        "unit": "PT"
+                    },
+                    "spaceBelow": {
+                        "magnitude": 4,
+                        "unit": "PT"
+                    },
+                    "keepLinesTogether": true,
+                    "keepWithNext": true,
+                    "pageBreakBefore": false
+                }
+            },
+            {
+                "namedStyleType": "HEADING_6",
+                "textStyle": {
+                    "italic": true,
+                    "foregroundColor": {
+                        "color": {
+                            "rgbColor": {
+                                "red": 0.4,
+                                "green": 0.4,
+                                "blue": 0.4
+                            }
+                        }
+                    },
+                    "fontSize": {
+                        "magnitude": 11,
+                        "unit": "PT"
+                    }
+                },
+                "paragraphStyle": {
+                    "namedStyleType": "NORMAL_TEXT",
+                    "direction": "LEFT_TO_RIGHT",
+                    "spaceAbove": {
+                        "magnitude": 12,
+                        "unit": "PT"
+                    },
+                    "spaceBelow": {
+                        "magnitude": 4,
+                        "unit": "PT"
+                    },
+                    "keepLinesTogether": true,
+                    "keepWithNext": true,
+                    "pageBreakBefore": false
+                }
+            },
+            {
+                "namedStyleType": "TITLE",
+                "textStyle": {
+                    "fontSize": {
+                        "magnitude": 26,
+                        "unit": "PT"
+                    }
+                },
+                "paragraphStyle": {
+                    "namedStyleType": "NORMAL_TEXT",
+                    "direction": "LEFT_TO_RIGHT",
+                    "spaceAbove": {
+                        "unit": "PT"
+                    },
+                    "spaceBelow": {
+                        "magnitude": 3,
+                        "unit": "PT"
+                    },
+                    "keepLinesTogether": true,
+                    "keepWithNext": true,
+                    "pageBreakBefore": false
+                }
+            },
+            {
+                "namedStyleType": "SUBTITLE",
+                "textStyle": {
+                    "italic": false,
+                    "foregroundColor": {
+                        "color": {
+                            "rgbColor": {
+                                "red": 0.4,
+                                "green": 0.4,
+                                "blue": 0.4
+                            }
+                        }
+                    },
+                    "fontSize": {
+                        "magnitude": 15,
+                        "unit": "PT"
+                    },
+                    "weightedFontFamily": {
+                        "fontFamily": "Arial",
+                        "weight": 400
+                    }
+                },
+                "paragraphStyle": {
+                    "namedStyleType": "NORMAL_TEXT",
+                    "direction": "LEFT_TO_RIGHT",
+                    "spaceAbove": {
+                        "unit": "PT"
+                    },
+                    "spaceBelow": {
+                        "magnitude": 16,
+                        "unit": "PT"
+                    },
+                    "keepLinesTogether": true,
+                    "keepWithNext": true,
+                    "pageBreakBefore": false
+                }
+            }
+        ]
+    },
+    "lists": {
+        "kix.24y8jsilcb8m": {
+            "listProperties": {
+                "nestingLevels": [
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 54,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 72,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 90,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 108,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 126,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 144,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 162,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 180,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 198,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 216,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 234,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 252,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 270,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 288,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 306,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 324,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    }
+                ]
+            }
+        },
+        "kix.9gx2nxaluda3": {
+            "listProperties": {
+                "nestingLevels": [
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 54,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 72,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 90,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 108,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 126,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 144,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 162,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 180,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 198,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 216,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 234,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 252,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 270,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 288,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 306,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 324,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    }
+                ]
+            }
+        },
+        "kix.t9jq22atrpid": {
+            "listProperties": {
+                "nestingLevels": [
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 54,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 72,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 90,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 108,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 126,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 144,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 162,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 180,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 198,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 216,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 234,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 252,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 270,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 288,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 306,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 324,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    }
+                ]
+            }
+        },
+        "kix.xa1vdwc7qi4n": {
+            "listProperties": {
+                "nestingLevels": [
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 18,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 36,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 54,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 72,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 90,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 108,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 126,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 144,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 162,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 180,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 198,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 216,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 234,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 252,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 270,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 288,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    },
+                    {
+                        "bulletAlignment": "START",
+                        "glyphType": "GLYPH_TYPE_UNSPECIFIED",
+                        "indentFirstLine": {
+                            "magnitude": 306,
+                            "unit": "PT"
+                        },
+                        "indentStart": {
+                            "magnitude": 324,
+                            "unit": "PT"
+                        },
+                        "textStyle": {
+                            "underline": false
+                        },
+                        "startNumber": 1
+                    }
+                ]
+            }
+        }
+    },
+    "revisionId": "ALBJ4LvIn8uPdiAGl9m0uU-afYwym9rfuAVXPGeoiAWEP5yC-TXR9656_5LFBfV2gtExLbxYDR4x930MCfkAiA",
+    "suggestionsViewMode": "SUGGESTIONS_INLINE",
+    "documentId": "1OHnHmFoN8ec74ErafG5EepmSTWM5FTU6FSNcPOjMLcs"
+}

@@ -1,0 +1,47 @@
+# Environments
+.env
+.venv
+venv/
+*.pyc
+
+# IDE / Editor specific
+.vscode/
+.idea/
+*.swp
+*~
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Credentials & Sensitive Files
+credentials.json
+token.pickle
+token_sheets.pickle
+token_sheets_write.pickle
+*.log
+
+# Unnecessary data sources (already processed into faiss_index)
+/オーダーノート現実創造プログラム/
+/docs/
+/Clippings/
+/seminar_sales/
+/YouTube学習/
+/コンセプトメイキング/
+/やこYouTube本/
+/作業フォルダ/
+/HEGL人材募集元データ/
+
+# Mac OS specific
+.DS_Store
+
+# Google API
+google_api/google_docs_source/
+google_doc_content.txt
+
+# data files that should not be committed
+google_sheet_content.csv
+HEGL人材募集元データ
+data/google_doc_content.txt
+data/google_sheet_content.csv
+data/token.pickle
+data/token_sheets.pickle 
