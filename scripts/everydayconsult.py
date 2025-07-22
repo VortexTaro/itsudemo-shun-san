@@ -8,8 +8,7 @@ from datetime import datetime
 import streamlit.components.v1 as components
 
 # --- 定数 ---
-# SIMILARITY_THRESHOLD = 0.7 # 不要になったためコメントアウト
-# REQUEST_LOG_FILE = "shun_requests.log" # 不要になったためコメントアウト
+SIMILARITY_THRESHOLD = 0.7 # 類似度評価のしきい値を再度有効化
 
 # --- 初期設定 ---
 st.title("いつでもしゅんさん")
@@ -74,13 +73,17 @@ if prompt := st.chat_input("メッセージを入力してください..."):
         # --- 知識ベースから関連情報を検索 ---
         context = ""
         source_docs = []
+        is_relevant_info_found = False
         if db:
             try:
-                # 検索は行うが、結果の利用はAIに任せる
-                source_docs = db.similarity_search_with_score(prompt, k=5)
-                context += "--- 関連情報 ---\n"
-                for doc, score in source_docs:
-                    context += doc.page_content + "\n\n"
+                docs_with_scores = db.similarity_search_with_score(prompt, k=5)
+                # 最も関連性の高いドキュメントのスコアをしきい値と比較
+                if docs_with_scores and docs_with_scores[0][1] <= SIMILARITY_THRESHOLD:
+                    is_relevant_info_found = True
+                    source_docs = docs_with_scores
+                    context += "--- 関連情報 ---\n"
+                    for doc, score in source_docs:
+                        context += doc.page_content + "\n\n"
             except Exception as e:
                 st.warning(f"知識ベースの検索中にエラーが発生しました: {e}")
 
@@ -93,8 +96,12 @@ if prompt := st.chat_input("メッセージを入力してください..."):
             system_prompt = "You are a helpful assistant."
 
         final_system_prompt = system_prompt
-        if context:
+        # 関連情報が見つかった場合のみ、その情報をプロンプトに追加
+        if is_relevant_info_found:
             final_system_prompt += "\n\n" + context
+        else:
+            # 見つからない場合は「なし」という明確な信号を送る
+            final_system_prompt += "\n\n--- 関連情報 ---\nなし"
 
         # --- API呼び出しとストリーミング ---
         try:
