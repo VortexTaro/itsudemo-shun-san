@@ -55,14 +55,46 @@ if "advice_mode" not in st.session_state:
     st.session_state.advice_mode = False
 
 # --- ヘルパー関数 ---
-def log_request(user_query):
+def log_request(query_to_log):
     """ユーザーの質問をログファイルに記録する"""
     with open(REQUEST_LOG_FILE, "a", encoding="utf-8") as f:
         log_entry = {
             "timestamp": datetime.now().isoformat(),
-            "user_query": user_query,
+            "request_content": query_to_log,
         }
         f.write(str(log_entry) + "\n")
+
+def rephrase_and_log_request(user_prompt):
+    """ユーザーの質問をプライバシーに配慮してリフレーズし、ログに記録する"""
+    try:
+        rephrase_system_prompt = (
+            "あなたは、ユーザーからの質問を、プライバシーに配慮しつつ、コーチである「しゅんさん」へのリクエストとして要約するアシスタントです。"
+            "以下のルールに従って、質問を1文のリクエストに変換してください。\n"
+            "・ユーザーの個人的な話や固有名詞は絶対に含めないでください。\n"
+            "・あくまで一般的な相談や質問の形にしてください。\n"
+            "・元の質問の意図や核となるトピックは維持してください。\n\n"
+            "例1：『〇〇さん（姉）との関係でいつもイライラしてしまいます。どうすればいいですか？』→『家族関係（特に姉妹）の悩みについて、関係を改善するためのアドバイスを求めています。』\n"
+            "例2：『副業で月5万円稼ぎたいのですが、何から始めればいいかわかりません。』→『副業での収益化（月5万円目標）に関する具体的な始め方についての質問があります。』"
+        )
+        
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": rephrase_system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            stream=False,
+            temperature=0.2,
+        )
+        rephrased_query = response.choices[0].message.content or "リクエストの要約に失敗しました。"
+        
+        log_content = f"[自動検知] {rephrased_query}"
+        log_request(log_content)
+
+    except Exception as e:
+        log_request(f"[自動検知エラー] 質問の要約に失敗しました。Error: {e}")
+        st.warning(f"リクエストの自動ログ記録中にエラーが発生しました: {e}")
+
 
 # --- チャット履歴の表示 ---
 for idx, msg in enumerate(st.session_state.messages):
@@ -177,7 +209,8 @@ if st.session_state.get("advice_mode", False):
 if prompt := st.chat_input("メッセージを入力してください..."):
     # コーチングモードの処理
     if st.session_state.get("coaching_mode", False):
-        log_request(prompt)
+        log_content = f"[ユーザー確認済] {prompt}"
+        log_request(log_content)
         st.session_state.coaching_mode = False
         st.session_state.messages.append({"role": "user", "content": prompt, "id": str(uuid.uuid4())})
         st.session_state.messages.append({
@@ -226,6 +259,8 @@ if prompt := st.chat_input("メッセージを入力してください..."):
                 else:
                     offer_shun_request = True
                     context = "--- 関連情報 ---\nなし"
+                    # 回答できないと判断した時点で、リクエストを要約してログに記録
+                    rephrase_and_log_request(prompt)
             except Exception as e:
                 st.warning(f"知識ベースの検索中にエラーが発生しました: {e}")
 
