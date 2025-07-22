@@ -199,61 +199,80 @@ if prompt := st.chat_input("メッセージを入力してください..."):
         st.rerun()
 
     # 通常の応答処理
+    # ユーザーのメッセージを履歴に追加・表示
     st.session_state.messages.append({"role": "user", "content": prompt, "id": str(uuid.uuid4())})
-    
-    # --- 裏側でアシスタントの応答を完全に生成する ---
-    context = ""
-    source_docs = []
-    offer_shun_request = False 
+    with st.chat_message("user"):
+        st.markdown(prompt)
 
-    if db:
-        try:
-            docs_with_scores = db.similarity_search_with_score(prompt, k=5)
-            
-            # 類似度スコアはL2距離なので、値が小さいほど類似度が高い。比較演算子を修正。
-            if docs_with_scores and docs_with_scores[0][1] <= SIMILARITY_THRESHOLD:
-                source_docs = docs_with_scores
-                context += "--- 関連情報 ---\n"
-                for doc, score in source_docs:
-                    context += doc.page_content + "\n\n"
-            else:
-                offer_shun_request = True
-                context = "--- 関連情報 ---\nなし"
-        except Exception as e:
-            st.warning(f"知識ベースの検索中にエラーが発生しました: {e}")
-
-    try:
-        with open("docs/system_prompt.md", "r", encoding="utf-8") as f:
-            system_prompt = f.read()
-    except FileNotFoundError:
-        st.warning("docs/system_prompt.md が見つかりません。")
-        system_prompt = "You are a helpful assistant."
-
-    final_system_prompt = system_prompt
-    if context:
-        final_system_prompt += "\n\n" + context
-
-    try:
-        messages_for_api = [
-            {"role": "system", "content": final_system_prompt},
-            *[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ]
-        ]
+    # アシスタントの応答を生成・ストリーミング表示
+    with st.chat_message("assistant", avatar="assets/avatar.png"):
+        message_placeholder = st.empty()
+        full_response = ""
         
-        response = client.chat.completions.create(
-            model="gpt-4o",
-            messages=messages_for_api, # type: ignore
-            stream=False, # ストリームを無効にして、完全な応答を一度に受け取る
-        )
-        full_response = response.choices[0].message.content or "申し訳ありません、応答を生成できませんでした。"
+        # --- 知識ベースから関連情報を検索 ---
+        context = ""
+        source_docs = []
+        offer_shun_request = False
 
-    except Exception as e:
-        st.error(f"AIとの通信中にエラーが発生しました: {e}")
-        full_response = "申し訳ありません、応答を生成できませんでした。"
-    
-    # --- 生成された応答をセッション履歴に追加 ---
+        if db:
+            try:
+                docs_with_scores = db.similarity_search_with_score(prompt, k=5)
+                if docs_with_scores and docs_with_scores[0][1] <= SIMILARITY_THRESHOLD:
+                    source_docs = docs_with_scores
+                    context += "--- 関連情報 ---\n"
+                    for doc, score in source_docs:
+                        context += doc.page_content + "\n\n"
+                else:
+                    offer_shun_request = True
+                    context = "--- 関連情報 ---\nなし"
+            except Exception as e:
+                st.warning(f"知識ベースの検索中にエラーが発生しました: {e}")
+
+        # --- システムプロンプトの準備 ---
+        try:
+            with open("docs/system_prompt.md", "r", encoding="utf-8") as f:
+                system_prompt = f.read()
+        except FileNotFoundError:
+            st.warning("docs/system_prompt.md が見つかりません。")
+            system_prompt = "You are a helpful assistant."
+
+        final_system_prompt = system_prompt
+        if context:
+            final_system_prompt += "\n\n" + context
+
+        # --- API呼び出しとストリーミング ---
+        try:
+            messages_for_api = [
+                {"role": "system", "content": final_system_prompt},
+                *[
+                    {"role": m["role"], "content": m["content"]}
+                    for m in st.session_state.messages
+                ]
+            ]
+            
+            stream = client.chat.completions.create(
+                model="gpt-4o",
+                messages=messages_for_api,
+                stream=True,
+            )
+            for chunk in stream:
+                full_response += (chunk.choices[0].delta.content or "")
+                message_placeholder.markdown(full_response + "▌")
+            message_placeholder.markdown(full_response)
+
+        except Exception as e:
+            st.error(f"AIとの通信中にエラーが発生しました: {e}")
+            full_response = "申し訳ありません、応答を生成できませんでした。"
+
+        # --- 参照元の表示 ---
+        if source_docs:
+            with st.expander("参照元ファイル"):
+                for i, (doc, score) in enumerate(source_docs):
+                    st.markdown(f"**ファイル名:** `{doc.metadata.get('source', 'N/A')}`")
+                    st.markdown(f"**選択理由:** ユーザーの質問と内容が類似しているため (類似度スコア: {score:.4f})")
+                    st.text_area("参照箇所:", value=doc.page_content, height=100, disabled=True, key=f"stream_source_{i}")
+
+    # --- 完全な応答をセッション履歴に追加 ---
     st.session_state.messages.append({
         "role": "assistant",
         "content": full_response,
