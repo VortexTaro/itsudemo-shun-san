@@ -134,7 +134,8 @@ for i, msg in enumerate(st.session_state.messages):
         st.markdown(msg["content"])
         
         # --- フィードバック機能 ---
-        if msg["role"] == "assistant":
+        # AIの応答で、かつ最初の挨拶ではない場合にボタンを表示
+        if msg["role"] == "assistant" and i > 0:
             feedback_status = st.session_state.feedback_given.get(msg["id"])
             
             if not feedback_status:
