@@ -22,7 +22,7 @@ token_sheets_write.pickle
 
 # Unnecessary data sources (already processed into faiss_index)
 /オーダーノート現実創造プログラム/
-/docs/
+# /docs/  <-- この行をコメントアウトして、docsフォルダをGitの管理対象に含めます
 /Clippings/
 /seminar_sales/
 /YouTube学習/
