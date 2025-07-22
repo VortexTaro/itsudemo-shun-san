@@ -99,7 +99,7 @@ def main():
         all_documents.extend(docs)
     
     print(f"\n--- 全てのソースから合計 {len(all_documents)} 個のドキュメントを読み込みました ---")
-
+    
     # 処理の実行
     texts = split_documents(all_documents)
     create_and_save_faiss_index(texts, api_key)
