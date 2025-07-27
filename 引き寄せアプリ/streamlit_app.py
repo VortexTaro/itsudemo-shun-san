@@ -15,38 +15,39 @@ import glob
 import re
 
 def generate_search_query(prompt, conversation_history):
-    """
-    ユーザーの会話的なプロンプトと会話履歴を元に、ベクトル検索に適したクエリに変換します。
-    """
-    history_str = "\n".join([f"<{m['role']}> {m['content']}" for m in conversation_history])
-
-    system_prompt = "あなたは、ベクトルデータベース検索クエリを作成する専門家です。ユーザーとの直近の会話と最新の質問を元に、'引き寄せの法則'や'オーダーノート'に関するナレッジベースから最も関連性の高いドキュメントを見つけ出すための、簡潔でキーワードが豊富な検索クエリを1つ生成してください。"
+    """ユーザーのプロンプトと会話履歴から、FAISS検索に最適なクエリを生成する"""
     
-    user_message = f"""# 会話履歴
+    # 会話履歴を整形
+    history_str = "\n".join([f"{msg['role']}: {msg['content']}" for msg in conversation_history])
+
+    # プロンプトテンプレート
+    prompt_template = f"""
+あなたは優秀な検索アシスタントです。以下の会話履歴と最後のユーザープロンプトを分析し、ベクトルデータベースから最も関連性の高い情報を引き出すための、簡潔かつ効果的な検索クエリを生成してください。
+
+【制約条件】
+- 最も重要なキーワードを抽出してください。
+- 検索クエリ以外の余計な文章は含めないでください。
+- ユーザーの意図を正確に反映してください。
+
+【会話履歴】
 {history_str}
 
-# 最新の質問
+【最後のユーザープロンプト】
 {prompt}
 
-# 指示
-上記の会話の流れを汲み取り、ユーザーの最新の質問の核心を捉え、最も的確な検索結果を得られるであろう、単一の検索クエリを生成してください。「続けて」のような単純な指示の場合は、会話履歴から検索すべきトピックを判断してください。
-
-検索クエリ:"""
-
+【生成すべき検索クエリ】
+"""
+    
     try:
-        response = model.generate_content(
-            contents=[system_prompt, user_message],
-            generation_config=genai.GenerationConfig(
-                temperature=0,
-                max_output_tokens=50,
-            )
-        )
-        search_query = response.text.strip().replace('"', '')
-        if not search_query:
-            return prompt
+        # Geminiに検索クエリの生成を依頼
+        response = model.generate_content(prompt_template)
+        search_query = response.text.strip()
+        # st.info(f"生成された検索クエリ: `{search_query}`") # デバッグ用
         return search_query
-    except Exception:
+    except Exception as e:
+        st.warning(f"検索クエリの生成に失敗しました: {e}。元のプロンプトを使用します。")
         return prompt
+
 
 # --- 定数 ---
 SIMILARITY_THRESHOLD = 0.7 # 類似度評価のしきい値を再度有効化
@@ -186,6 +187,42 @@ except Exception as e:
 
 db = load_faiss_index(FAISS_INDEX_PATH, embeddings)
 
+# --- AIによる検索クエリ生成 ---
+def generate_search_query(prompt, conversation_history):
+    """ユーザーのプロンプトと会話履歴から、FAISS検索に最適なクエリを生成する"""
+    
+    # 会話履歴を整形
+    history_str = "\n".join([f"{msg['role']}: {msg['content']}" for msg in conversation_history])
+
+    # プロンプトテンプレート
+    prompt_template = f"""
+あなたは優秀な検索アシスタントです。以下の会話履歴と最後のユーザープロンプトを分析し、ベクトルデータベースから最も関連性の高い情報を引き出すための、簡潔かつ効果的な検索クエリを生成してください。
+
+【制約条件】
+- 最も重要なキーワードを抽出してください。
+- 検索クエリ以外の余計な文章は含めないでください。
+- ユーザーの意図を正確に反映してください。
+
+【会話履歴】
+{history_str}
+
+【最後のユーザープロンプト】
+{prompt}
+
+【生成すべき検索クエリ】
+"""
+    
+    try:
+        # Geminiに検索クエリの生成を依頼
+        response = model.generate_content(prompt_template)
+        search_query = response.text.strip()
+        # st.info(f"生成された検索クエリ: `{search_query}`") # デバッグ用
+        return search_query
+    except Exception as e:
+        st.warning(f"検索クエリの生成に失敗しました: {e}。元のプロンプトを使用します。")
+        return prompt
+
+
 # セッション状態の初期化
 if "messages" not in st.session_state:
     st.session_state.messages = [{
@@ -259,133 +296,93 @@ for i, msg in enumerate(st.session_state.messages):
                     st.divider()
 
 # --- ユーザーからの入力 ---
-if prompt := st.chat_input("ここにメッセージを入力してください"):
-    # ユーザーのメッセージを履歴に追加
+if prompt := st.chat_input("質問や相談したいことを入力してね"):
     st.session_state.messages.append({"role": "user", "content": prompt, "id": str(uuid.uuid4())})
     
-    # 画面にユーザーのメッセージを表示
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar="user"):
         st.markdown(prompt)
 
-    # --- AIの応答生成 ---
     with st.chat_message("assistant", avatar="assets/avatar.png"):
         message_placeholder = st.empty()
+        full_response = ""
         
-        with st.spinner("今、宇宙と交信中だから、ちょっと待ってね！"):
-            # --- 知識ベースから関連情報を検索 ---
-            context = ""
+        try:
+            # 1. 最適な検索クエリを生成
+            with st.spinner("最適な検索方法を考えています..."):
+                 search_query = generate_search_query(prompt, st.session_state.messages)
+
+            # 2. 生成されたクエリでFAISSを検索
+            with st.spinner("ナレッジベースを検索しています..."):
+                docs_with_scores = db.similarity_search_with_score(search_query, k=10)
+            
+            # 3. 検索結果を整形
+            source_texts = []
             source_docs_with_reasons = []
             is_relevant_info_found = False
-            if db:
-                try:
-                    # イベントループの確認
-                    try:
-                        asyncio.get_running_loop()
-                    except RuntimeError:
-                        asyncio.set_event_loop(asyncio.new_event_loop())
-                    
-                    # ステップ1: AIに会話履歴を元に最適な検索クエリを生成させる
-                    conversation_history = st.session_state.messages[-3:] # 直近3件の会話を履歴として渡す
-                    search_query = generate_search_query(prompt, conversation_history)
-                    
-                    # ステップ2: 類似度スコアに基づき、候補を検索 (kを増やす)
-                    docs_with_scores = db.similarity_search_with_score(search_query, k=10)
-                    
-                    # ステップ3: スコアが良いものだけをフィルタリングし、参照リストを構築
-                    if docs_with_scores:
-                        for doc, score in docs_with_scores:
-                            if score <= SIMILARITY_THRESHOLD:
-                                source_docs_with_reasons.append({
-                                    "doc": doc,
-                                    "score": score,
-                                    "reason": f"AIの判断による関連候補 (スコア: {score:.4f})"
-                                })
-                    
-                    # 関連するものが1つでもあれば、コンテキストを構築
-                    if source_docs_with_reasons:
-                        is_relevant_info_found = True
-                        context += "--- 関連情報 ---\n"
-                        # コンテキストに含める情報を上位5件に制限
-                        for item in source_docs_with_reasons[:5]:
-                            context += item["doc"].page_content + "\n\n"
 
-                except Exception as e:
-                    tb_str = traceback.format_exc()
-                    st.error(f"知識ベースの検索中にエラーが発生しました:\n\n```\n{e}\n\n{tb_str}\n```")
+            if docs_with_scores:
+                for doc, score in docs_with_scores:
+                    # ここですでに関連性があるかどうかの大まかな判断を入れる
+                    # 例: スコアが一定以上、または特定のキーワードを含むなど
+                    # 今回はシンプルに上位5件は関連ありとみなす
+                    if len(source_docs_with_reasons) < 5:
+                         source_docs_with_reasons.append({
+                            "doc": doc,
+                            "reason": f"AIの判断による関連候補 (スコア: {score:.4f})"
+                        })
+                         source_texts.append(doc.page_content)
+                         is_relevant_info_found = True
+
+                # 関連するものが1つでもあれば、コンテキストを構築
+                if is_relevant_info_found:
+                    context = "--- 関連情報 ---\n"
+                    # コンテキストに含める情報を上位5件に制限
+                    for item in source_docs_with_reasons:
+                        context += item["doc"].page_content + "\n\n"
+                else:
+                    context = "--- 関連情報 ---\nなし"
 
             # --- システムプロンプトの準備 ---
-            try:
-                with open("docs/system_prompt.md", "r", encoding="utf-8") as f:
-                    system_prompt = f.read()
-            except FileNotFoundError:
-                st.warning("docs/system_prompt.md が見つかりません。")
-                system_prompt = "You are a helpful assistant."
+            with open("引き寄せアプリ/docs/system_prompt.md", "r", encoding="utf-8") as f:
+                final_system_prompt = f.read()
 
-            final_system_prompt = system_prompt
-            # 関連情報が見つかった場合のみ、その情報をプロンプトに追加
-            if is_relevant_info_found:
-                final_system_prompt += "\n\n" + context
-            else:
-                # 見つからない場合は「なし」という明確な信号を送る
-                final_system_prompt += "\n\n--- 関連情報 ---\nなし"
-
+            final_system_prompt += f"\n\n{context}"
+            
             # --- API呼び出しとストリーミング ---
-            full_response = ""
-            try:
-                history = []
-                for m in st.session_state.messages[:-1]:
-                    role = 'user' if m['role'] == 'user' else 'model'
-                    history.append({'role': role, 'parts': [{'text': m['content']}]})
+            history = []
+            for m in st.session_state.messages[:-1]:
+                role = 'user' if m['role'] == 'user' else 'model'
+                history.append({'role': role, 'parts': [{'text': m['content']}]})
 
-                chat = model.start_chat(history=history)
-                
-                system_prompt_with_context = final_system_prompt
-                if is_relevant_info_found:
-                    system_prompt_with_context += "\n\n" + context
-                else:
-                    system_prompt_with_context += "\n\n--- 関連情報 ---\nなし"
-                
-                prompt_with_context = f"{system_prompt_with_context}\n\nuser: {prompt}\nassistant:"
+            chat = model.start_chat(history=history)
+            
+            prompt_with_context = f"{final_system_prompt}\n\nuser: {prompt}\nassistant:"
 
-                # ストリーミングを有効にして応答を生成
-                response = chat.send_message(
-                    prompt_with_context,
-                    generation_config=genai.GenerationConfig(
-                        temperature=0.7,
-                        max_output_tokens=4096, # 最大トークン数を増加
-                    ),
-                    stream=True
+            # ストリーミングを有効にして応答を生成
+            stream = chat.send_message(
+                prompt,
+                stream=True,
+                generation_config=genai.GenerationConfig(
+                    temperature=0.7,
+                    max_output_tokens=4096,
                 )
+            )
 
-                # 応答をチャンクごとに処理してタイプライター風に表示
-                finish_reason = None
-                for chunk in response:
-                    if chunk.text:
-                        full_response += chunk.text
-                        # マークダウン表示を修正しながらリアルタイムで表示
-                        message_placeholder.markdown(full_response + "▌")
-                    if chunk.candidates and chunk.candidates[0].finish_reason:
-                        finish_reason = chunk.candidates[0].finish_reason.name
+            for chunk in stream:
+                if chunk.text:
+                    full_response += chunk.text
+                    message_placeholder.markdown(full_response + "▌")
+            
+            # 最終的な応答をクリーンアップして表示
+            message_placeholder.markdown(full_response)
 
-                # トークン数上限で中断された場合のメッセージを追加
-                if finish_reason == 'MAX_TOKENS':
-                    full_response += "\n\n...（「続けて」と入力すると、続きを生成します）"
+        except Exception as e:
+            st.error(f"応答の生成中にエラーが発生しました: {e}")
+            full_response = "申し訳ありません、応答を生成できませんでした。"
+            message_placeholder.markdown(full_response)
 
-                # カーソルを消して最終的な応答を表示
-                message_placeholder.markdown(full_response)
-                
-                # ストリーミング後に応答が空だった場合の処理
-                if not full_response.strip():
-                    full_response = "申し訳ありません、AIからの応答が空でした。再度お試しください。"
-                    message_placeholder.markdown(full_response)
-
-            except Exception as e:
-                tb_str = traceback.format_exc()
-                st.error(f"AIとの通信中にエラーが発生しました: {e}\n\n{tb_str}")
-                full_response = "申し訳ありません、応答を生成できませんでした。"
-
-    # --- 完全な応答をセッション履歴に追加 ---
-    st.session_state.messages.append({
+        # 応答と参照元をメッセージ履歴に追加
+        st.session_state.messages.append({
         "role": "assistant",
         "content": full_response,
         "sources": source_docs_with_reasons,
