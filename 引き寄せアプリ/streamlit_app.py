@@ -14,17 +14,22 @@ import traceback
 import glob
 import re
 
-def generate_search_query(prompt):
+def generate_search_query(prompt, conversation_history):
     """
-    ユーザーの会話的なプロンプトを、ベクトル検索に適したクエリに変換します。
+    ユーザーの会話的なプロンプトと会話履歴を元に、ベクトル検索に適したクエリに変換します。
     """
-    system_prompt = "あなたは、ベクトルデータベース検索クエリを作成する専門家です。ユーザーからの会話形式の質問を受け取り、'引き寄せの法則'や'オーダーノート'に関するナレッジベースから最も関連性の高いドキュメントを見つけ出すための、簡潔でキーワードが豊富な検索クエリを1つ生成してください。"
+    history_str = "\n".join([f"<{m['role']}> {m['content']}" for m in conversation_history])
+
+    system_prompt = "あなたは、ベクトルデータベース検索クエリを作成する専門家です。ユーザーとの直近の会話と最新の質問を元に、'引き寄せの法則'や'オーダーノート'に関するナレッジベースから最も関連性の高いドキュメントを見つけ出すための、簡潔でキーワードが豊富な検索クエリを1つ生成してください。"
     
-    user_message = f"""# ユーザーの質問
+    user_message = f"""# 会話履歴
+{history_str}
+
+# 最新の質問
 {prompt}
 
 # 指示
-上記の質問の核心を捉え、最も的確な検索結果を得られるであろう、単一の検索クエリを生成してください。
+上記の会話の流れを汲み取り、ユーザーの最新の質問の核心を捉え、最も的確な検索結果を得られるであろう、単一の検索クエリを生成してください。「続けて」のような単純な指示の場合は、会話履歴から検索すべきトピックを判断してください。
 
 検索クエリ:"""
 
@@ -36,15 +41,12 @@ def generate_search_query(prompt):
                 max_output_tokens=50,
             )
         )
-        # 不要な引用符などを削除
         search_query = response.text.strip().replace('"', '')
         if not search_query:
-            return prompt # 失敗したら元のプロンプトを返す
-        print(f"Generated Search Query: {search_query}") # デバッグ用
+            return prompt
         return search_query
-    except Exception as e:
-        print(f"Error in generate_search_query: {e}") # デバッグ用
-        return prompt # エラー時も元のプロンプトを返す
+    except Exception:
+        return prompt
 
 # --- 定数 ---
 SIMILARITY_THRESHOLD = 0.7 # 類似度評価のしきい値を再度有効化
@@ -259,9 +261,10 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                     except RuntimeError:
                         asyncio.set_event_loop(asyncio.new_event_loop())
                     
-                    # ステップ1: AIに最適な検索クエリを生成させる
-                    search_query = generate_search_query(prompt)
-
+                    # ステップ1: AIに会話履歴を元に最適な検索クエリを生成させる
+                    conversation_history = st.session_state.messages[-3:]
+                    search_query = generate_search_query(prompt, conversation_history)
+                    
                     # ステップ2: 類似度スコアに基づき、候補を検索 (kを増やす)
                     docs_with_scores = db.similarity_search_with_score(search_query, k=10)
                     
@@ -272,7 +275,7 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                                 source_docs_with_reasons.append({
                                     "doc": doc,
                                     "score": score,
-                                    "reason": f"類似度スコア: {score:.4f}" # 理由をスコアに
+                                    "reason": f"AIの判断による関連候補 (スコア: {score:.4f})"
                                 })
                     
                     # 関連するものが1つでもあれば、コンテキストを構築
@@ -337,7 +340,7 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                     if chunk.text:
                         full_response += chunk.text
                         # マークダウン表示を修正しながらリアルタイムで表示
-                        cleaned_response = re.sub(r'\\(\*|`|_)', r'\1', full_response)
+                        cleaned_response = re.sub(r'\\(?=[\*`_])', '', full_response)
                         message_placeholder.markdown(cleaned_response + "▌")
                     if chunk.candidates and chunk.candidates[0].finish_reason:
                         finish_reason = chunk.candidates[0].finish_reason.name
@@ -347,7 +350,7 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                     full_response += "\n\n...（「続けて」と入力すると、続きを生成します）"
 
                 # カーソルを消して最終的な応答を表示
-                final_cleaned_response = re.sub(r'\\(\*|`|_)', r'\1', full_response)
+                final_cleaned_response = re.sub(r'\\(?=[\*`_])', '', full_response)
                 message_placeholder.markdown(final_cleaned_response)
                 
                 # ストリーミング後に応答が空だった場合の処理
