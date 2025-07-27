@@ -8,6 +8,7 @@ from langchain_community.vectorstores import FAISS
 import uuid
 from datetime import datetime
 import streamlit.components.v1 as components
+import asyncio
 
 def generate_source_reasons(client, prompt, docs_with_scores):
     """
@@ -109,6 +110,8 @@ FAISS_INDEX_PATH = "data/faiss_index"
 def load_faiss_index(path):
     """FAISSインデックスをロードする（キャッシュを利用）"""
     try:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
         embeddings = GoogleGenerativeAIEmbeddings(
             model="models/embedding-001",
             google_api_key=api_key
