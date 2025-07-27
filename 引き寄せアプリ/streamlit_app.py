@@ -102,7 +102,8 @@ try:
     api_key = st.secrets.get("GEMINI_API_KEY") or st.secrets.get("GOOGLE_API_KEY")
     if not api_key:
         raise KeyError("API key not found")
-    client = genai.Client(api_key=api_key)
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel("gemini-2.5-pro")
 
     # 非同期処理の初期化問題を解決するため、グローバルスコープでイベントループを設定
     try:
@@ -337,7 +338,7 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                 history.append({'role': role, 'parts': [{'text': m['content']}]})
 
             # 新しいチャットセッションを開始
-            chat = client.model(model_name="gemini-2.5-pro").start_chat(
+            chat = model.start_chat(
                 history=history,
             )
             
