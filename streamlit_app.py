@@ -1,6 +1,5 @@
 import streamlit as st
-from google import genai
-from google.genai import types
+import google.generativeai as genai
 
 st.title("いつでもしゅんさん")
 
@@ -12,7 +11,7 @@ try:
         st.info("Streamlit CloudのSecretsにGEMINI_API_KEYを設定してください")
         st.stop()
     
-    client = genai.Client(api_key=api_key)
+    genai.configure(api_key=api_key)
 except Exception as e:
     st.error(f"エラー: {e}")
     st.stop()
@@ -35,13 +34,9 @@ if prompt := st.chat_input("メッセージを入力"):
     
     with st.chat_message("assistant"):
         try:
-            response = client.models.generate_content(
-                model="gemini-2.5-pro",
-                contents=f"あなたは引き寄せの法則の専門家です。親しみやすく答えてください。\n\nユーザー: {prompt}",
-                config=types.GenerateContentConfig(
-                    temperature=0.7,
-                    max_output_tokens=500,
-                )
+            model = genai.GenerativeModel('gemini-pro')
+            response = model.generate_content(
+                f"あなたは引き寄せの法則の専門家です。親しみやすく答えてください。\n\nユーザー: {prompt}"
             )
             st.write(response.text)
             st.session_state.messages.append({"role": "assistant", "content": response.text})
