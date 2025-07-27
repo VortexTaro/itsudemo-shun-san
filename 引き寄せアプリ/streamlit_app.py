@@ -315,4 +315,4 @@ if st.session_state.get("scroll_to_bottom"):
         "<script>window.scrollTo(0, document.body.scrollHeight);</script>",
         height=0
     )
-    st.session_state.scroll_to_bottom = False
+    st.session_state.scroll_to_bottom = False 
