@@ -98,7 +98,7 @@ except KeyError:
 KNOWLEDGE_SOURCES = [
     ("オーダーノート現実創造プログラム", "**/*.txt"),
 ]
-FAISS_INDEX_PATH = "data/faiss_index_v2" # 新しいパスに変更
+FAISS_INDEX_PATH = "data/faiss_index_v3" # インデックスを強制再構築するためパスを変更
 
 def build_and_save_faiss_index(embeddings):
     st.info("知識ベースを再構築しています...")
