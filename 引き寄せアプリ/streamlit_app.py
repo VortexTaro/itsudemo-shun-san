@@ -14,60 +14,37 @@ import traceback
 import glob
 import re
 
-def generate_source_reasons(prompt, docs_with_scores):
+def generate_search_query(prompt):
     """
-    各参照ドキュメントがユーザーのプロンプトにどう関連しているかの理由を、AIが生成します。
+    ユーザーの会話的なプロンプトを、ベクトル検索に適したクエリに変換します。
     """
-    if not docs_with_scores:
-        return []
-
-    content_list = []
-    for i, (doc, score) in enumerate(docs_with_scores):
-        content_list.append(f"<{i+1}>\n{doc.page_content}\n</{i+1}>")
+    system_prompt = "あなたは、ベクトルデータベース検索クエリを作成する専門家です。ユーザーからの会話形式の質問を受け取り、'引き寄せの法則'や'オーダーノート'に関するナレッジベースから最も関連性の高いドキュメントを見つけ出すための、簡潔でキーワードが豊富な検索クエリを1つ生成してください。"
     
-    formatted_chunks = "\n\n".join(content_list)
-
-    system_prompt = "あなたは、ユーザーの質問と複数のテキスト断片の関係性を分析する専門家です。各テキスト断片について、なぜそれがユーザーの質問に関連するのか、核心的な理由を簡潔に説明してください。"
-    
-    user_message = f"""以下のユーザーの質問と、それに関連する可能性のあるテキスト断片リストを読んでください。
-
-# ユーザーの質問
+    user_message = f"""# ユーザーの質問
 {prompt}
 
-# テキスト断片リスト
-{formatted_chunks}
-
 # 指示
-各テキスト断片について、その関連性を説明する理由を**一つだけ**、30字以内の簡潔な日本語で生成し、JSON文字列のリスト形式で出力してください。
-他の余計な言葉や説明は絶対に含めないでください。
+上記の質問の核心を捉え、最も的確な検索結果を得られるであろう、単一の検索クエリを生成してください。
 
-["理由1", "理由2", "理由3", ...]
-"""
+検索クエリ:"""
+
     try:
         response = model.generate_content(
             contents=[system_prompt, user_message],
             generation_config=genai.GenerationConfig(
                 temperature=0,
-                max_output_tokens=500,
+                max_output_tokens=50,
             )
         )
-        
-        response_text = response.text
-        # ```json ... ``` のようなマークダウンブロックを考慮してJSONを抽出
-        match = re.search(r'\[.*\]', response_text, re.DOTALL)
-        if match:
-            json_str = match.group(0)
-            reasons = json.loads(json_str)
-        else:
-            reasons = []
-
-        if isinstance(reasons, list) and len(reasons) == len(docs_with_scores):
-            return reasons
-        else:
-            return ["プロンプトとの類似性が見つかりました。"] * len(docs_with_scores)
-
-    except Exception:
-        return ["プロンプトとの類似性が見つかりました。"] * len(docs_with_scores)
+        # 不要な引用符などを削除
+        search_query = response.text.strip().replace('"', '')
+        if not search_query:
+            return prompt # 失敗したら元のプロンプトを返す
+        print(f"Generated Search Query: {search_query}") # デバッグ用
+        return search_query
+    except Exception as e:
+        print(f"Error in generate_search_query: {e}") # デバッグ用
+        return prompt # エラー時も元のプロンプトを返す
 
 # --- 定数 ---
 SIMILARITY_THRESHOLD = 0.7 # 類似度評価のしきい値を再度有効化
@@ -245,7 +222,7 @@ for i, msg in enumerate(st.session_state.messages):
                     reason = item["reason"]
                     
                     st.markdown(f"**ファイル名:** `{doc.metadata.get('source', 'N/A')}`")
-                    st.markdown(f"**選択理由:** {reason} (類似度スコア: {score:.4f})")
+                    st.markdown(f"**選択理由:** {reason}")
                     
                     # コンテナを使って参照箇所をスクロール可能に
                     content_html = f"""
@@ -282,22 +259,30 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                     except RuntimeError:
                         asyncio.set_event_loop(asyncio.new_event_loop())
                     
-                    # 検索と理由生成のロジックは変更なし
-                    docs_with_scores = db.similarity_search_with_score(prompt, k=5)
-                    relevant_docs_with_scores = []
+                    # ステップ1: AIに最適な検索クエリを生成させる
+                    search_query = generate_search_query(prompt)
+
+                    # ステップ2: 類似度スコアに基づき、候補を検索 (kを増やす)
+                    docs_with_scores = db.similarity_search_with_score(search_query, k=10)
+                    
+                    # ステップ3: スコアが良いものだけをフィルタリングし、参照リストを構築
                     if docs_with_scores:
                         for doc, score in docs_with_scores:
                             if score <= SIMILARITY_THRESHOLD:
-                                relevant_docs_with_scores.append((doc, score))
+                                source_docs_with_reasons.append({
+                                    "doc": doc,
+                                    "score": score,
+                                    "reason": f"類似度スコア: {score:.4f}" # 理由をスコアに
+                                })
                     
-                    if relevant_docs_with_scores:
-                        reasons = generate_source_reasons(prompt, relevant_docs_with_scores)
-                        for (doc, score), reason in zip(relevant_docs_with_scores, reasons):
-                            source_docs_with_reasons.append({"doc": doc, "score": score, "reason": reason})
+                    # 関連するものが1つでもあれば、コンテキストを構築
+                    if source_docs_with_reasons:
                         is_relevant_info_found = True
                         context += "--- 関連情報 ---\n"
-                        for item in source_docs_with_reasons:
+                        # コンテキストに含める情報を上位5件に制限
+                        for item in source_docs_with_reasons[:5]:
                             context += item["doc"].page_content + "\n\n"
+
                 except Exception as e:
                     tb_str = traceback.format_exc()
                     st.error(f"知識ベースの検索中にエラーが発生しました:\n\n```\n{e}\n\n{tb_str}\n```")
