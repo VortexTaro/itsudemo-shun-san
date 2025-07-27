@@ -9,9 +9,10 @@ import uuid
 from datetime import datetime
 import streamlit.components.v1 as components
 import asyncio
-from langchain_community.document_loaders import DirectoryLoader, TextLoader
+from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import traceback
+import glob
 
 def generate_source_reasons(client, prompt, docs_with_scores):
     """
@@ -127,17 +128,14 @@ FAISS_INDEX_PATH = "data/faiss_index_v2" # 新しいパスに変更
 def build_and_save_faiss_index(embeddings):
     st.info("知識ベースを再構築しています...")
     try:
-        source_directory, _ = KNOWLEDGE_SOURCES[0]
+        source_directory, pattern = KNOWLEDGE_SOURCES[0]
         
-        # os.walkを使って再帰的にファイルをリストアップする確実な方法に変更
-        all_file_paths = []
-        for root, _, files in os.walk(source_directory):
-            for file in files:
-                if file.endswith(".txt"):
-                    all_file_paths.append(os.path.join(root, file))
+        # globを直接使い、再帰的にファイルをリストアップする確実な方法に変更
+        search_path = os.path.join(source_directory, pattern)
+        all_file_paths = glob.glob(search_path, recursive=True)
 
         if not all_file_paths:
-            st.error(f"'{source_directory}' 内にドキュメントが見つかりませんでした。")
+            st.error(f"'{source_directory}' 内にドキュメントが見つかりませんでした。globパターン: '{search_path}'")
             st.stop()
 
         # 個別のファイルをTextLoaderで読み込む
@@ -148,7 +146,7 @@ def build_and_save_faiss_index(embeddings):
                 documents.extend(loader.load())
             except Exception as e:
                 st.warning(f"ファイル '{file_path}' の読み込み中にエラー: {e}")
-
+        
         st.info(f"'{source_directory}' から {len(documents)} 件のドキュメントを読み込み、チャンクに分割しました。")
         
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
@@ -194,7 +192,9 @@ db = load_faiss_index(FAISS_INDEX_PATH, embeddings)
 if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant",
-        "content": "僕はしゅんさんのクローンです。しゅんさんが教えてくれた情報を元にあなたの質問に答えちゃうよ！引き寄せの法則・オーダーノートを学ぶ中で疑問や人生相談などあればなんなりチャットから教えてください！\n\n※あなたが質問したことはいかなることであっても、しゅんさんや他の人には見えないから、安心してね！",
+        "content": """僕はしゅんさんのクローンです。しゅんさんが教えてくれた情報を元にあなたの質問に答えちゃうよ！引き寄せの法則・オーダーノートを学ぶ中で疑問や人生相談などあればなんなりチャットから教えてください！
+
+※あなたが質問したことはいかなることであっても、しゅんさんや他の人には見えないから、安心してね！""",
         "id": str(uuid.uuid4()),
     }]
 if "scroll_to_bottom" not in st.session_state:
@@ -289,28 +289,24 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                 # ステップ1: 類似度スコアに基づき、候補を検索
                 docs_with_scores = db.similarity_search_with_score(prompt, k=5)
                 
-                if docs_with_scores and docs_with_scores[0][1] <= SIMILARITY_THRESHOLD:
-                    
-                    # ステップ2: AIによる意味的な関連性チェック(関所)
-                    reasons = generate_source_reasons(client, prompt, docs_with_scores)
-                    
-                    # ステップ3:本当に関連するドキュメントだけをフィルタリング
-                    relevant_sources = []
-                    for (doc, score), reason in zip(docs_with_scores, reasons):
-                        if reason != "[IRRELEVANT]":
+                # 関連性チェックを簡略化し、類似度スコアとしきい値でフィルタリング
+                relevant_sources = []
+                if docs_with_scores:
+                    for doc, score in docs_with_scores:
+                        if score <= SIMILARITY_THRESHOLD: # しきい値よりスコアが低い（=類似度が高い）
                             relevant_sources.append({
                                 "doc": doc,
                                 "score": score,
-                                "reason": reason
+                                "reason": "プロンプトとの類似性が見つかりました。" # 固定の理由
                             })
-                    
-                    # ステップ4: 関連するものが1つでもあれば、コンテキストを構築
-                    if relevant_sources:
-                        is_relevant_info_found = True
-                        source_docs_with_reasons = relevant_sources
-                        context += "--- 関連情報 ---\\n"
-                        for item in source_docs_with_reasons:
-                            context += item["doc"].page_content + "\\n\\n"
+                
+                # 関連するものが1つでもあれば、コンテキストを構築
+                if relevant_sources:
+                    is_relevant_info_found = True
+                    source_docs_with_reasons = relevant_sources
+                    context += "--- 関連情報 ---\n"
+                    for item in source_docs_with_reasons:
+                        context += item["doc"].page_content + "\n\n"
 
             except Exception as e:
                 tb_str = traceback.format_exc()
