@@ -8,6 +8,7 @@ from langchain_community.vectorstores import FAISS
 import uuid
 from datetime import datetime
 import streamlit.components.v1 as components
+import asyncio
 
 def generate_source_reasons(client, prompt, docs_with_scores):
     """
@@ -19,9 +20,9 @@ def generate_source_reasons(client, prompt, docs_with_scores):
 
     content_list = []
     for i, (doc, score) in enumerate(docs_with_scores):
-        content_list.append(f"<{i+1}>\n{doc.page_content}\n</{i+1}>")
+        content_list.append(f"<{i+1}>\\n{doc.page_content}\\n</{i+1}>")
     
-    formatted_chunks = "\n\n".join(content_list)
+    formatted_chunks = "\\n\\n".join(content_list)
 
     system_prompt = "あなたは、ユーザーの質問と複数のテキスト断片の関係性を分析する専門家です。各テキスト断片がユーザーの質問に本当に関連しているかを厳密に判断し、関連している場合はその核心的な理由を、関連していない場合はその旨を明確に示してください。"
     
@@ -48,7 +49,7 @@ def generate_source_reasons(client, prompt, docs_with_scores):
     try:
         response = client.models.generate_content(
             model="gemini-2.5-pro",
-            contents=system_prompt + "\n\n" + user_message,
+            contents=system_prompt + "\\n\\n" + user_message,
             config=types.GenerateContentConfig(
                 temperature=0,
                 max_output_tokens=500,
@@ -56,7 +57,7 @@ def generate_source_reasons(client, prompt, docs_with_scores):
         )
         reasons_text = response.text
         reasons = []
-        for line in reasons_text.strip().split('\n'):
+        for line in reasons_text.strip().split('\\n'):
             if '理由: ' in line:
                 reason = line.split('理由: ', 1)[1].strip()
                 reasons.append(reason)
@@ -87,7 +88,7 @@ def log_feedback(message_id, user_prompt, assistant_response, feedback):
         "feedback": feedback
     }
     with open(FEEDBACK_LOG_FILE, "a", encoding="utf-8") as f:
-        f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
+        f.write(json.dumps(log_entry, ensure_ascii=False) + "\\n")
 
 # --- 初期設定 ---
 st.title("いつでもしゅんさん")
@@ -109,6 +110,8 @@ FAISS_INDEX_PATH = "data/faiss_index"
 def load_faiss_index(path):
     """FAISSインデックスをロードする（キャッシュを利用）"""
     try:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
         embeddings = GoogleGenerativeAIEmbeddings(
             model="models/embedding-001",
             google_api_key=api_key
@@ -124,7 +127,7 @@ db = load_faiss_index(FAISS_INDEX_PATH)
 if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant",
-        "content": "僕はしゅんさんのクローンです。しゅんさんが教えてくれた情報を元にあなたの質問に答えちゃうよ！引き寄せの法則・オーダーノートを学ぶ中で疑問や人生相談などあればなんなりチャットから教えてください！\n\n※あなたが質問したことはいかなることであっても、しゅんさんや他の人には見えないから、安心してね！",
+        "content": "僕はしゅんさんのクローンです。しゅんさんが教えてくれた情報を元にあなたの質問に答えちゃうよ！引き寄せの法則・オーダーノートを学ぶ中で疑問や人生相談などあればなんなりチャットから教えてください！\\n\\n※あなたが質問したことはいかなることであっても、しゅんさんや他の人には見えないから、安心してね！",
         "id": str(uuid.uuid4()),
     }]
 if "scroll_to_bottom" not in st.session_state:
@@ -134,8 +137,8 @@ if 'feedback_given' not in st.session_state:
 
 # --- チャット履歴の表示 ---
 for i, msg in enumerate(st.session_state.messages):
-    # avatar_url = "assets/avatar.png" if msg["role"] == "assistant" else "user"
-    with st.chat_message(msg["role"]): #, avatar=avatar_url):
+    avatar_url = "assets/avatar.png" if msg["role"] == "assistant" else "user"
+    with st.chat_message(msg["role"], avatar=avatar_url):
         st.markdown(msg["content"])
         
         # --- フィードバック機能 ---
@@ -200,7 +203,7 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
         st.markdown(prompt)
 
     # --- AIの応答生成 ---
-    with st.chat_message("assistant"): #, avatar="assets/avatar.png"):
+    with st.chat_message("assistant", avatar="assets/avatar.png"):
         message_placeholder = st.empty()
         full_response = ""
 
@@ -232,9 +235,9 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                     if relevant_sources:
                         is_relevant_info_found = True
                         source_docs_with_reasons = relevant_sources
-                        context += "--- 関連情報 ---\n"
+                        context += "--- 関連情報 ---\\n"
                         for item in source_docs_with_reasons:
-                            context += item["doc"].page_content + "\n\n"
+                            context += item["doc"].page_content + "\\n\\n"
 
             except Exception as e:
                 st.warning(f"知識ベースの検索中にエラーが発生しました: {e}")
@@ -250,10 +253,10 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
         final_system_prompt = system_prompt
         # 関連情報が見つかった場合のみ、その情報をプロンプトに追加
         if is_relevant_info_found:
-            final_system_prompt += "\n\n" + context
+            final_system_prompt += "\\n\\n" + context
         else:
             # 見つからない場合は「なし」という明確な信号を送る
-            final_system_prompt += "\n\n--- 関連情報 ---\nなし"
+            final_system_prompt += "\\n\\n--- 関連情報 ---\\nなし"
 
         # --- API呼び出しとストリーミング ---
         try:
