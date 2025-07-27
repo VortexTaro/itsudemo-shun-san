@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8d841aa1cbae60f3",
+        "id": "811c6d42a71dcc82",
         "type": "tabs",
         "children": [
           {
-            "id": "bfe26fa749c8c606",
+            "id": "58024adfc40fa4fb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Clippings/TIPS Brain関連/３Daysローンチプログラム〜コンテンツメイク編〜.md",
+                "file": "docs/Clippings/掌握_要約_AI活用ガイド.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "３Daysローンチプログラム〜コンテンツメイク編〜"
+              "title": "掌握_要約_AI活用ガイド"
             }
           }
         ]
@@ -94,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "豊かさセミナー登壇/seminar_script_concise.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "バックリンク"
+              "title": "seminar_script_conciseへのバックリンク"
             }
           },
           {
@@ -165,42 +166,48 @@
       "command-palette:コマンドパレットを開く": false
     }
   },
-  "active": "bfe26fa749c8c606",
+  "active": "58024adfc40fa4fb",
   "lastOpenFiles": [
-    "Clippings/TIPS Brain関連/【１９６カ国分の１“日本人特化型” ライティング入門】“７種の日本人” 誘惑手引帖《テンプテーションガイド》  🇯🇵 大河.md",
-    "オーダーノート現実創造プログラム/row120_特典_パートナーシップ_tab1_運命のパートナーと出会うための５つのポイント.txt",
-    "やこYouTube本",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/傾聴の学校コラボセミナー『聴きて叶え、叶えて聴く』/傾聴の学校コラボセミナー『聴きて叶え、叶えて聴く』.txt",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/傾聴の学校コラボセミナー『聴きて叶え、叶えて聴く』",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/完全実践セミナー1day/動画.txt",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/完全実践セミナー1day/スライド.txt",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/完全実践セミナー1day",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/引き寄せコーチ養成講座/星を使った引き寄せコンサルの方法解説.txt",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/引き寄せコーチ養成講座/「他人を変えたい」という願望をどう導くか？引き寄せコンサルwith森優子さん.txt",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/引き寄せコーチ養成講座",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/引き寄せ集客装置の作り方/お客様からエネルギーをもらう.txt",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/引き寄せ集客装置の作り方/『引き寄せ集客』最初に忘れてほしい事.txt",
+    "引き寄せアプリ/オーダーノート現実創造プログラム/引き寄せ集客装置の作り方/引き寄せ法を徹底解説.txt",
+    "掌握_要約_AI活用ガイド.md",
     "うとさんYouTube戦略_要約.md",
-    "Clippings/TIPS Brain関連/うとyoutube",
-    "Clippings/CMS（コンセプトマスタリースクール）｜望月俊亮.md",
-    "Clippings/たった1本のYoutube動画でリスト誘導最大化しつつ利益を同時に獲得する裏技note｜うとさん（Ayano）.md",
-    "docs/AI活用ツール比較分析レポート.md",
-    "Clippings/TIPS Brain関連/有益性製造の技術・めあり式〜集客率・成約率・教育を一撃でバグらせる一冊  めあり.md",
+    "docs/傾聴の学校_ファネル数値計算.md",
+    "docs/プロンプト関係/伝統文化・アート系キーワード.md",
+    "引き寄せアプリ/STREAMLIT_CLOUD_手順.md",
+    "引き寄せアプリ/GEMINI_変更箇所.md",
+    "引き寄せアプリ/README_DEPLOY.md",
+    "引き寄せアプリ/docs/system_prompt.md",
+    "docs/Clippings/AIトミーくん.md",
     "Clippings/AI関連/無料で使える最高のAIノート『NotebookLM』使い方と活用事例｜AI-Bridge Lab.md",
-    "Clippings/TIPS Brain関連/掌握〜思考停止させ高額商品もノーグダ購入させる完全教育バイブル〜.md",
-    "Clippings/書けなかった自分のための、“書ける”Obsidian｜Diakg.md",
-    "Clippings/AI関連/書けなかった自分のための、“書ける”Obsidian｜Diakg.md",
-    "Clippings/TIPS Brain関連/一夜で2000万円売り上げた伝説のTips販売の裏.md",
+    "Clippings/AI関連/Gemini CLI × Obsidian × Cursor   noteの記事を「情報資産」に変える方法を、SNSの先人の知見をもとにやってみた話｜ささ＠小学校で働く.md",
+    "Clippings/AI関連/Cursorを1年触っているエンジニアの最近の使い方｜ニケちゃん.md",
     "Clippings/TIPS Brain関連/たった1本のYoutube動画でリスト誘導最大化しつつ利益を同時に獲得する裏技note｜うとさん（Ayano）.md",
     "Clippings/TIPS Brain関連/セールスライティングの魔導書**カンニング禁書目録**  めあり.md",
     "Clippings/TIPS Brain関連/The.IMPACT 〜1の労力で100の成果を〜.md",
-    "Clippings/AI関連/Gemini CLI × Obsidian × Cursor   noteの記事を「情報資産」に変える方法を、SNSの先人の知見をもとにやってみた話｜ささ＠小学校で働く.md",
-    "Clippings/AI関連/Cursorを1年触っているエンジニアの最近の使い方｜ニケちゃん.md",
-    "Clippings/TIPS Brain関連/３Daysローンチプログラム〜コンテンツメイク編〜.md",
-    "Clippings/TIPS Brain関連",
-    "Clippings/AI関連/TIPS Brain関連",
-    "Clippings/AI関連",
-    "Clippings/Gemini CLI × Obsidian × Cursor   noteの記事を「情報資産」に変える方法を、SNSの先人の知見をもとにやってみた話｜ささ＠小学校で働く.md",
-    "Clippings/書けなかった自分のための、“書ける”Obsidian｜Diakg 1.md",
-    "Clippings/Cursorを1年触っているエンジニアの最近の使い方｜ニケちゃん.md",
-    "Clippings/無料で使える最高のAIノート『NotebookLM』使い方と活用事例｜AI-Bridge Lab.md",
-    "Clippings/【１９６カ国分の１“日本人特化型” ライティング入門】“７種の日本人” 誘惑手引帖《テンプテーションガイド》  🇯🇵 大河.md",
-    "掌握_要約_AI活用ガイド.md",
-    "docs/プロンプト関係/プロンプト集",
-    "docs/プロンプト関係/セールスライティング関連",
-    "docs/プロンプト関係/プロンプト関係/プロンプト集",
-    "docs/プロンプト関係/プロンプト関係/セールスライティング関連",
-    "Clippings/有益性製造の技術・めあり式〜集客率・成約率・教育を一撃でバグらせる一冊  めあり.md",
-    "Clippings/セールスライティングの魔導書**カンニング禁書目録**  めあり.md"
+    "book_title_ideas.md",
+    "publication_workshop_for_mochizuki_san.md",
+    "出版企画書_望月俊亮.md",
+    "豊かさセミナー登壇/seminar_murakami_ai.md",
+    "豊かさセミナー登壇/toyosaka_seminar_slide.md",
+    "豊かさセミナー登壇/slide_generation_prompt.md",
+    "slide/slide_generation_prompt.md",
+    "slide/seminar_script_concise.md",
+    "豊かさセミナー登壇/seminar_script_concise.md",
+    "マーケティング関連/seminar_script_ver2.md",
+    "my-sales-website/public/window.svg",
+    "my-sales-website/public/vercel.svg",
+    "my-sales-website/public/next.svg",
+    "my-sales-website/public/globe.svg",
+    "my-sales-website/public/file.svg"
   ]
 }

@@ -124,53 +124,31 @@ KNOWLEDGE_SOURCES = [
 ]
 FAISS_INDEX_PATH = "data/faiss_index_v2" # 新しいパスに変更
 
-def build_and_save_faiss_index(path, embeddings_for_build):
-    """ドキュメントを読み込み、FAISSインデックスを構築して保存する"""
-    st.warning("知識ベースが見つからないか、互換性がないため、再構築を開始します。数分かかる場合があります...")
-    all_chunks = []
-    
-    # デバッグ情報
+def build_and_save_faiss_index(embeddings):
+    st.info("知識ベースを再構築しています...")
     try:
-        st.info(f"現在の作業ディレクトリ: `{os.getcwd()}`")
-        st.info(f"知識ベースのソースディレクトリ: `{KNOWLEDGE_SOURCES[0][0]}`")
-    except Exception as e:
-        st.error(f"デバッグ情報の取得中にエラー: {e}")
-
-    for dir_path, glob_pattern in KNOWLEDGE_SOURCES:
-        if not os.path.isdir(dir_path):
-            st.warning(f"ディレクトリ'{dir_path}'が見つからないためスキップします。")
-            continue
-        try:
-            loader = DirectoryLoader(
-                dir_path,
-                glob=glob_pattern,
-                loader_cls=TextLoader,
-                loader_kwargs={"encoding": "utf-8"},
-                show_progress=True,
-                use_multithreading=True
-            )
-            documents = loader.load()
-            if not documents:
-                st.warning(f"ディレクトリ'{dir_path}'からドキュメントを読み込めませんでした。")
-                continue
-
-            text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
-            chunks = text_splitter.split_documents(documents)
-            all_chunks.extend(chunks)
-            st.info(f"'{dir_path}' から {len(documents)} 件のドキュメントを読み込み、{len(chunks)}個のチャンクに分割しました。")
-        except Exception as e:
-            st.error(f"'{dir_path}'の処理中にエラーが発生しました: {e}")
-
-    if not all_chunks:
-        st.error("知識ベースを構築するためのドキュメントが一つも見つかりませんでした。アプリを続行できません。")
-        st.stop()
-
-    try:
+        source_directory, glob_pattern = KNOWLEDGE_SOURCES
+        
+        # サブディレクトリを再帰的に読み込む設定を追加
+        loader = DirectoryLoader(
+            source_directory, 
+            glob=glob_pattern, 
+            recursive=True,
+            loader_cls=TextLoader,
+            loader_kwargs={'encoding': 'utf-8'}
+        )
+        
+        documents = loader.load()
+        st.info(f"'{source_directory}' から {len(documents)} 件のドキュメントを読み込み、チャンクに分割しました。")
+        
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
+        chunks = text_splitter.split_documents(documents)
+        
         st.info("FAISSインデックスの構築と保存を開始します...")
-        db = FAISS.from_documents(all_chunks, embeddings_for_build)
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        db.save_local(path)
-        st.success(f"新しい知識ベースを '{path}' に保存しました。")
+        db = FAISS.from_documents(chunks, embeddings)
+        os.makedirs(os.path.dirname(FAISS_INDEX_PATH), exist_ok=True)
+        db.save_local(FAISS_INDEX_PATH)
+        st.success(f"新しい知識ベースを '{FAISS_INDEX_PATH}' に保存しました。")
         return db
     except Exception as e:
         st.error(f"FAISSインデックスの構築中に致命的なエラーが発生しました: {e}\\n{traceback.format_exc()}")
@@ -196,9 +174,9 @@ def load_faiss_index(path, _embeddings):
             return FAISS.load_local(path, _embeddings, allow_dangerous_deserialization=True)
         except Exception as e:
             st.warning(f"既存の知識ベースの読み込みに失敗しました ({e})。再構築を試みます。")
-            return build_and_save_faiss_index(path, _embeddings)
+            return build_and_save_faiss_index(_embeddings)
     else:
-        return build_and_save_faiss_index(path, _embeddings)
+        return build_and_save_faiss_index(_embeddings)
 
 db = load_faiss_index(FAISS_INDEX_PATH, embeddings)
 
