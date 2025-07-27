@@ -326,19 +326,26 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                     prompt_with_context,
                     generation_config=genai.GenerationConfig(
                         temperature=0.7,
-                        max_output_tokens=1500,
+                        max_output_tokens=4096, # 最大トークン数を増加
                     ),
                     stream=True
                 )
 
                 # 応答をチャンクごとに処理してタイプライター風に表示
+                finish_reason = None
                 for chunk in response:
                     if chunk.text:
                         full_response += chunk.text
                         # マークダウン表示を修正しながらリアルタイムで表示
                         cleaned_response = re.sub(r'\\(\*|`|_)', r'\1', full_response)
                         message_placeholder.markdown(cleaned_response + "▌")
-                
+                    if chunk.candidates and chunk.candidates[0].finish_reason:
+                        finish_reason = chunk.candidates[0].finish_reason.name
+
+                # トークン数上限で中断された場合のメッセージを追加
+                if finish_reason == 'MAX_TOKENS':
+                    full_response += "\n\n...（「続けて」と入力すると、続きを生成します）"
+
                 # カーソルを消して最終的な応答を表示
                 final_cleaned_response = re.sub(r'\\(\*|`|_)', r'\1', full_response)
                 message_placeholder.markdown(final_cleaned_response)
