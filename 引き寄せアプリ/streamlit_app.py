@@ -268,112 +268,105 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
     # --- AIの応答生成 ---
     with st.chat_message("assistant", avatar="assets/avatar.png"):
         message_placeholder = st.empty()
-        full_response = ""
-
-        # --- 知識ベースから関連情報を検索 ---
-        context = ""
-        source_docs_with_reasons = []
-        is_relevant_info_found = False
-        if db:
-            try:
-                # 検索を実行する現在のスレッドにイベントループを設定
+        
+        with st.spinner("考え中..."):
+            # --- 知識ベースから関連情報を検索 ---
+            context = ""
+            source_docs_with_reasons = []
+            is_relevant_info_found = False
+            if db:
                 try:
-                    asyncio.get_running_loop()
-                except RuntimeError:  # 'RuntimeError: There is no current event loop...'
-                    asyncio.set_event_loop(asyncio.new_event_loop())
-                
-                # ステップ1: 類似度スコアに基づき、候補を検索
-                docs_with_scores = db.similarity_search_with_score(prompt, k=5)
-                
-                # ステップ2: スコアが良いものだけをフィルタリング
-                relevant_docs_with_scores = []
-                if docs_with_scores:
-                    for doc, score in docs_with_scores:
-                        if score <= SIMILARITY_THRESHOLD:
-                            relevant_docs_with_scores.append((doc, score))
-                
-                # ステップ3: 関連候補について、AIに理由を生成させる
-                if relevant_docs_with_scores:
-                    reasons = generate_source_reasons(prompt, relevant_docs_with_scores)
+                    # イベントループの確認
+                    try:
+                        asyncio.get_running_loop()
+                    except RuntimeError:
+                        asyncio.set_event_loop(asyncio.new_event_loop())
                     
-                    # 最終的な参照リストを構築
-                    for (doc, score), reason in zip(relevant_docs_with_scores, reasons):
-                        source_docs_with_reasons.append({
-                            "doc": doc,
-                            "score": score,
-                            "reason": reason
-                        })
+                    # 検索と理由生成のロジックは変更なし
+                    docs_with_scores = db.similarity_search_with_score(prompt, k=5)
+                    relevant_docs_with_scores = []
+                    if docs_with_scores:
+                        for doc, score in docs_with_scores:
+                            if score <= SIMILARITY_THRESHOLD:
+                                relevant_docs_with_scores.append((doc, score))
+                    
+                    if relevant_docs_with_scores:
+                        reasons = generate_source_reasons(prompt, relevant_docs_with_scores)
+                        for (doc, score), reason in zip(relevant_docs_with_scores, reasons):
+                            source_docs_with_reasons.append({"doc": doc, "score": score, "reason": reason})
+                        is_relevant_info_found = True
+                        context += "--- 関連情報 ---\n"
+                        for item in source_docs_with_reasons:
+                            context += item["doc"].page_content + "\n\n"
+                except Exception as e:
+                    tb_str = traceback.format_exc()
+                    st.error(f"知識ベースの検索中にエラーが発生しました:\n\n```\n{e}\n\n{tb_str}\n```")
 
-                    # 関連するものが1つでもあれば、コンテキストを構築
-                    is_relevant_info_found = True
-                    context += "--- 関連情報 ---\n"
-                    for item in source_docs_with_reasons:
-                        context += item["doc"].page_content + "\n\n"
+            # --- システムプロンプトの準備 ---
+            try:
+                with open("docs/system_prompt.md", "r", encoding="utf-8") as f:
+                    system_prompt = f.read()
+            except FileNotFoundError:
+                st.warning("docs/system_prompt.md が見つかりません。")
+                system_prompt = "You are a helpful assistant."
+
+            final_system_prompt = system_prompt
+            # 関連情報が見つかった場合のみ、その情報をプロンプトに追加
+            if is_relevant_info_found:
+                final_system_prompt += "\n\n" + context
+            else:
+                # 見つからない場合は「なし」という明確な信号を送る
+                final_system_prompt += "\n\n--- 関連情報 ---\nなし"
+
+            # --- API呼び出しとストリーミング ---
+            full_response = ""
+            try:
+                history = []
+                for m in st.session_state.messages[:-1]:
+                    role = 'user' if m['role'] == 'user' else 'model'
+                    history.append({'role': role, 'parts': [{'text': m['content']}]})
+
+                chat = model.start_chat(history=history)
+                
+                system_prompt_with_context = final_system_prompt
+                if is_relevant_info_found:
+                    system_prompt_with_context += "\n\n" + context
+                else:
+                    system_prompt_with_context += "\n\n--- 関連情報 ---\nなし"
+                
+                prompt_with_context = f"{system_prompt_with_context}\n\nuser: {prompt}\nassistant:"
+
+                # ストリーミングを有効にして応答を生成
+                response = chat.send_message(
+                    prompt_with_context,
+                    generation_config=genai.GenerationConfig(
+                        temperature=0.7,
+                        max_output_tokens=1500,
+                    ),
+                    stream=True
+                )
+
+                # 応答をチャンクごとに処理してタイプライター風に表示
+                for chunk in response:
+                    if chunk.text:
+                        full_response += chunk.text
+                        # マークダウン表示を修正しながらリアルタイムで表示
+                        cleaned_response = re.sub(r'\\(\*|`|_)', r'\1', full_response)
+                        message_placeholder.markdown(cleaned_response + "▌")
+                
+                # カーソルを消して最終的な応答を表示
+                final_cleaned_response = re.sub(r'\\(\*|`|_)', r'\1', full_response)
+                message_placeholder.markdown(final_cleaned_response)
+                
+                # ストリーミング後に応答が空だった場合の処理
+                if not full_response.strip():
+                    full_response = "申し訳ありません、AIからの応答が空でした。再度お試しください。"
+                    message_placeholder.markdown(full_response)
 
             except Exception as e:
                 tb_str = traceback.format_exc()
-                st.error(f"知識ベースの検索中にエラーが発生しました:\\n\\n```\\n{e}\\n\\n{tb_str}\\n```")
-
-        # --- システムプロンプトの準備 ---
-        try:
-            with open("docs/system_prompt.md", "r", encoding="utf-8") as f:
-                system_prompt = f.read()
-        except FileNotFoundError:
-            st.warning("docs/system_prompt.md が見つかりません。")
-            system_prompt = "You are a helpful assistant."
-
-        final_system_prompt = system_prompt
-        # 関連情報が見つかった場合のみ、その情報をプロンプトに追加
-        if is_relevant_info_found:
-            final_system_prompt += "\n\n" + context
-        else:
-            # 見つからない場合は「なし」という明確な信号を送る
-            final_system_prompt += "\n\n--- 関連情報 ---\nなし"
-
-        # --- API呼び出しとストリーミング ---
-        try:
-            # メッセージ履歴をGoogleのAPIが期待する形式に変換
-            history = []
-            for m in st.session_state.messages[:-1]: # 最後のユーザーメッセージは除く
-                role = 'user' if m['role'] == 'user' else 'model'
-                history.append({'role': role, 'parts': [{'text': m['content']}]})
-
-            # 新しいチャットセッションを開始
-            chat = model.start_chat(
-                history=history,
-            )
-            
-            # システムプロンプトを送信（Googleの新しい形式では直接サポートされないため、
-            # ユーザーメッセージの先頭にコンテキストとして含める）
-            prompt_with_context = f"{final_system_prompt}\\n\\nuser: {prompt}\\nassistant:"
-
-            # Geminiで応答を生成
-            response = chat.send_message(
-                prompt_with_context,
-                generation_config=genai.GenerationConfig(
-                    temperature=0.7,
-                    max_output_tokens=1500, # トークン上限を少し増やす
-                )
-            )
-            
-            # 安全性によるブロックを確認
-            if not response.candidates:
-                 full_response = "AIの応答が空でした。再度お試しください。"
-            elif response.candidates[0].finish_reason == 'SAFETY':
-                full_response = "申し訳ありません、安全上の理由により、この質問に対する応答を生成できませんでした。別の聞き方でお試しください。"
-            else:
-                full_response = response.text
-            
-            # AIの応答に含まれる不要なバックスラッシュを削除してマークダウンを修正
-            # 例: `\*\*` -> `**`
-            full_response = re.sub(r'\\(\*|`|_)', r'\1', full_response)
-                
-            message_placeholder.markdown(full_response)
-
-        except Exception as e:
-            tb_str = traceback.format_exc()
-            st.error(f"AIとの通信中にエラーが発生しました: {e}\n\n{tb_str}")
-            full_response = "申し訳ありません、応答を生成できませんでした。"
+                st.error(f"AIとの通信中にエラーが発生しました: {e}\n\n{tb_str}")
+                full_response = "申し訳ありません、応答を生成できませんでした。"
 
     # --- 完全な応答をセッション履歴に追加 ---
     st.session_state.messages.append({
