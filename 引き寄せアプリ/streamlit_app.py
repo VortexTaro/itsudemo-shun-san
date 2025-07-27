@@ -134,8 +134,8 @@ if 'feedback_given' not in st.session_state:
 
 # --- チャット履歴の表示 ---
 for i, msg in enumerate(st.session_state.messages):
-    avatar_url = "assistant" if msg["role"] == "assistant" else "user"
-    with st.chat_message(msg["role"], avatar=avatar_url):
+    # avatar_url = "assets/avatar.png" if msg["role"] == "assistant" else "user"
+    with st.chat_message(msg["role"]): #, avatar=avatar_url):
         st.markdown(msg["content"])
         
         # --- フィードバック機能 ---
@@ -200,7 +200,7 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
         st.markdown(prompt)
 
     # --- AIの応答生成 ---
-    with st.chat_message("assistant", avatar="assistant"):
+    with st.chat_message("assistant"): #, avatar="assets/avatar.png"):
         message_placeholder = st.empty()
         full_response = ""
 
