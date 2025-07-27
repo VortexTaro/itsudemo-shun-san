@@ -246,7 +246,9 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                             context += item["doc"].page_content + "\\n\\n"
 
             except Exception as e:
-                st.warning(f"知識ベースの検索中にエラーが発生しました: {e}")
+                import traceback
+                tb_str = traceback.format_exc()
+                st.error(f"知識ベースの検索中にエラーが発生しました:\\n\\n```\\n{e}\\n\\n{tb_str}\\n```")
 
         # --- システムプロンプトの準備 ---
         try:
