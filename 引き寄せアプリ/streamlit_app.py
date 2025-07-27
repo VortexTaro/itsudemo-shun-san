@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import json
-from google import genai
+import google.generativeai as genai
 from google.genai import types
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -103,7 +103,13 @@ try:
     if not api_key:
         raise KeyError("API key not found")
     genai.configure(api_key=api_key)
+    
+    # 埋め込みモデルと生成モデルを初期化
     model = genai.GenerativeModel("gemini-2.5-pro")
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/embedding-001",
+        google_api_key=api_key
+    )
 
     # 非同期処理の初期化問題を解決するため、グローバルスコープでイベントループを設定
     try:
@@ -111,11 +117,6 @@ try:
     except RuntimeError:
         asyncio.set_event_loop(asyncio.new_event_loop())
         
-    # 埋め込みモデルを一元管理
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001",
-        google_api_key=api_key
-    )
 except KeyError:
     st.error("Gemini APIキーが設定されていません。Streamlit Cloudの設定でGEMINI_API_KEYまたはGOOGLE_API_KEYを追加してください。")
     st.stop()
@@ -344,12 +345,12 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
             
             # システムプロンプトを送信（Googleの新しい形式では直接サポートされないため、
             # ユーザーメッセージの先頭にコンテキストとして含める）
-            prompt_with_context = f"{final_system_prompt}\n\nuser: {prompt}\nassistant:"
+            prompt_with_context = f"{final_system_prompt}\\n\\nuser: {prompt}\\nassistant:"
 
             # Geminiで応答を生成
             response = chat.send_message(
                 prompt_with_context,
-                generation_config=types.GenerationConfig(
+                generation_config=genai.GenerationConfig(
                     temperature=0.7,
                     max_output_tokens=1500, # トークン上限を少し増やす
                 )
