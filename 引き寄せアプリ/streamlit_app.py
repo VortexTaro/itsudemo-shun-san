@@ -323,42 +323,50 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
         final_system_prompt = system_prompt
         # 関連情報が見つかった場合のみ、その情報をプロンプトに追加
         if is_relevant_info_found:
-            final_system_prompt += "\\n\\n" + context
+            final_system_prompt += "\n\n" + context
         else:
             # 見つからない場合は「なし」という明確な信号を送る
-            final_system_prompt += "\\n\\n--- 関連情報 ---\\nなし"
+            final_system_prompt += "\n\n--- 関連情報 ---\nなし"
 
         # --- API呼び出しとストリーミング ---
         try:
-            # メッセージ履歴を構築
-            messages = []
-            for m in st.session_state.messages[:-1]:  # 最後のユーザーメッセージは除く
-                messages.append(f"{m['role']}: {m['content']}")
-            
-            # プロンプトを構築
-            full_prompt = f"""{final_system_prompt}
+            # メッセージ履歴をGoogleのAPIが期待する形式に変換
+            history = []
+            for m in st.session_state.messages[:-1]: # 最後のユーザーメッセージは除く
+                role = 'user' if m['role'] == 'user' else 'model'
+                history.append({'role': role, 'parts': [{'text': m['content']}]})
 
-これまでの会話:
-{chr(10).join(messages[-6:])}  # 最近の6メッセージのみ
-
-user: {prompt}
-assistant:"""
+            # 新しいチャットセッションを開始
+            chat = client.model(model_name="gemini-2.5-pro").start_chat(
+                history=history,
+            )
             
+            # システムプロンプトを送信（Googleの新しい形式では直接サポートされないため、
+            # ユーザーメッセージの先頭にコンテキストとして含める）
+            prompt_with_context = f"{final_system_prompt}\n\nuser: {prompt}\nassistant:"
+
             # Geminiで応答を生成
-            response = client.models.generate_content(
-                model="gemini-2.5-pro",
-                contents=full_prompt,
-                config=types.GenerateContentConfig(
+            response = chat.send_message(
+                prompt_with_context,
+                generation_config=types.GenerationConfig(
                     temperature=0.7,
-                    max_output_tokens=1000,
+                    max_output_tokens=1500, # トークン上限を少し増やす
                 )
             )
             
-            full_response = response.text
+            # 安全性によるブロックを確認
+            if not response.candidates:
+                 full_response = "AIの応答が空でした。再度お試しください。"
+            elif response.candidates[0].finish_reason == 'SAFETY':
+                full_response = "申し訳ありません、安全上の理由により、この質問に対する応答を生成できませんでした。別の聞き方でお試しください。"
+            else:
+                full_response = response.text
+                
             message_placeholder.markdown(full_response)
 
         except Exception as e:
-            st.error(f"AIとの通信中にエラーが発生しました: {e}")
+            tb_str = traceback.format_exc()
+            st.error(f"AIとの通信中にエラーが発生しました: {e}\n\n{tb_str}")
             full_response = "申し訳ありません、応答を生成できませんでした。"
 
     # --- 完全な応答をセッション履歴に追加 ---
