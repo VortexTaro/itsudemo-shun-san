@@ -12,6 +12,64 @@ from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import traceback
 import glob
+import re
+
+def generate_source_reasons(prompt, docs_with_scores):
+    """
+    各参照ドキュメントがユーザーのプロンプトにどう関連しているかの理由を、AIが生成します。
+    """
+    if not docs_with_scores:
+        return []
+
+    content_list = []
+    for i, (doc, score) in enumerate(docs_with_scores):
+        content_list.append(f"<{i+1}>\n{doc.page_content}\n</{i+1}>")
+    
+    formatted_chunks = "\n\n".join(content_list)
+
+    system_prompt = "あなたは、ユーザーの質問と複数のテキスト断片の関係性を分析する専門家です。各テキスト断片について、なぜそれがユーザーの質問に関連するのか、核心的な理由を簡潔に説明してください。"
+    
+    user_message = f"""以下のユーザーの質問と、それに関連する可能性のあるテキスト断片リストを読んでください。
+
+# ユーザーの質問
+{prompt}
+
+# テキスト断片リスト
+{formatted_chunks}
+
+# 指示
+各テキスト断片について、その関連性を説明する理由を**一つだけ**、30字以内の簡潔な日本語で生成してください。
+番号を付けてリスト形式で出力し、他の余計な言葉は含めないでください。
+
+例:
+1. お金の引き寄せ方を解説しているため。
+2. 「枠の外に出る」重要性について言及しているから。
+
+理由リスト:
+"""
+    try:
+        response = model.generate_content(
+            contents=[system_prompt, user_message],
+            generation_config=genai.GenerationConfig(
+                temperature=0,
+                max_output_tokens=500,
+            )
+        )
+        reasons_text = response.text
+        reasons = []
+        # "1. 理由" のような形式をパース
+        for line in reasons_text.strip().split('\n'):
+            match = re.match(r'\d+\.\s*(.*)', line)
+            if match:
+                reasons.append(match.group(1).strip())
+        
+        # パース失敗時や数が合わない場合は、汎用的な理由を返す
+        if len(reasons) != len(docs_with_scores):
+            return ["プロンプトとの類似性が見つかりました。"] * len(docs_with_scores)
+        return reasons
+    except Exception:
+        # エラー時も汎用的な理由を返す
+        return ["プロンプトとの類似性が見つかりました。"] * len(docs_with_scores)
 
 # --- 定数 ---
 SIMILARITY_THRESHOLD = 0.7 # 類似度評価のしきい値を再度有効化
@@ -229,21 +287,27 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                 # ステップ1: 類似度スコアに基づき、候補を検索
                 docs_with_scores = db.similarity_search_with_score(prompt, k=5)
                 
-                # 関連性チェックを簡略化し、類似度スコアとしきい値でフィルタリング
-                relevant_sources = []
+                # ステップ2: スコアが良いものだけをフィルタリング
+                relevant_docs_with_scores = []
                 if docs_with_scores:
                     for doc, score in docs_with_scores:
-                        if score <= SIMILARITY_THRESHOLD: # しきい値よりスコアが低い（=類似度が高い）
-                            relevant_sources.append({
-                                "doc": doc,
-                                "score": score,
-                                "reason": "プロンプトとの類似性が見つかりました。" # 固定の理由
-                            })
+                        if score <= SIMILARITY_THRESHOLD:
+                            relevant_docs_with_scores.append((doc, score))
                 
-                # 関連するものが1つでもあれば、コンテキストを構築
-                if relevant_sources:
+                # ステップ3: 関連候補について、AIに理由を生成させる
+                if relevant_docs_with_scores:
+                    reasons = generate_source_reasons(prompt, relevant_docs_with_scores)
+                    
+                    # 最終的な参照リストを構築
+                    for (doc, score), reason in zip(relevant_docs_with_scores, reasons):
+                        source_docs_with_reasons.append({
+                            "doc": doc,
+                            "score": score,
+                            "reason": reason
+                        })
+
+                    # 関連するものが1つでもあれば、コンテキストを構築
                     is_relevant_info_found = True
-                    source_docs_with_reasons = relevant_sources
                     context += "--- 関連情報 ---\n"
                     for item in source_docs_with_reasons:
                         context += item["doc"].page_content + "\n\n"
@@ -301,6 +365,9 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                 full_response = "申し訳ありません、安全上の理由により、この質問に対する応答を生成できませんでした。別の聞き方でお試しください。"
             else:
                 full_response = response.text
+            
+            # AIの応答に含まれる不要なバックスラッシュを削除してマークダウンを修正
+            full_response = full_response.replace('\\*', '*')
                 
             message_placeholder.markdown(full_response)
 
