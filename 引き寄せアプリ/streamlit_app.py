@@ -262,7 +262,7 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                         asyncio.set_event_loop(asyncio.new_event_loop())
                     
                     # ステップ1: AIに会話履歴を元に最適な検索クエリを生成させる
-                    conversation_history = st.session_state.messages[-3:]
+                    conversation_history = st.session_state.messages[-3:] # 直近3件の会話を履歴として渡す
                     search_query = generate_search_query(prompt, conversation_history)
                     
                     # ステップ2: 類似度スコアに基づき、候補を検索 (kを増やす)
@@ -340,8 +340,7 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                     if chunk.text:
                         full_response += chunk.text
                         # マークダウン表示を修正しながらリアルタイムで表示
-                        cleaned_response = re.sub(r'\\(?=[\*`_])', '', full_response)
-                        message_placeholder.markdown(cleaned_response + "▌")
+                        message_placeholder.markdown(full_response + "▌")
                     if chunk.candidates and chunk.candidates[0].finish_reason:
                         finish_reason = chunk.candidates[0].finish_reason.name
 
@@ -350,8 +349,7 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                     full_response += "\n\n...（「続けて」と入力すると、続きを生成します）"
 
                 # カーソルを消して最終的な応答を表示
-                final_cleaned_response = re.sub(r'\\(?=[\*`_])', '', full_response)
-                message_placeholder.markdown(final_cleaned_response)
+                message_placeholder.markdown(full_response)
                 
                 # ストリーミング後に応答が空だった場合の処理
                 if not full_response.strip():
