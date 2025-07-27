@@ -213,6 +213,12 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
         is_relevant_info_found = False
         if db:
             try:
+                # 検索を実行する現在のスレッドにイベントループを設定
+                try:
+                    asyncio.get_running_loop()
+                except RuntimeError:  # 'RuntimeError: There is no current event loop...'
+                    asyncio.set_event_loop(asyncio.new_event_loop())
+                
                 # ステップ1: 類似度スコアに基づき、候補を検索
                 docs_with_scores = db.similarity_search_with_score(prompt, k=5)
                 
