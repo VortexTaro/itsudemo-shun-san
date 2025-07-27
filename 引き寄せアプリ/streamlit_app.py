@@ -269,7 +269,7 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
     with st.chat_message("assistant", avatar="assets/avatar.png"):
         message_placeholder = st.empty()
         
-        with st.spinner("考え中..."):
+        with st.spinner("今、宇宙と交信中だから、ちょっと待ってね！"):
             # --- 知識ベースから関連情報を検索 ---
             context = ""
             source_docs_with_reasons = []
