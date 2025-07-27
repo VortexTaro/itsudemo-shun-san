@@ -127,18 +127,28 @@ FAISS_INDEX_PATH = "data/faiss_index_v2" # 新しいパスに変更
 def build_and_save_faiss_index(embeddings):
     st.info("知識ベースを再構築しています...")
     try:
-        source_directory, glob_pattern = KNOWLEDGE_SOURCES
+        source_directory, _ = KNOWLEDGE_SOURCES[0]
         
-        # サブディレクトリを再帰的に読み込む設定を追加
-        loader = DirectoryLoader(
-            source_directory, 
-            glob=glob_pattern, 
-            recursive=True,
-            loader_cls=TextLoader,
-            loader_kwargs={'encoding': 'utf-8'}
-        )
-        
-        documents = loader.load()
+        # os.walkを使って再帰的にファイルをリストアップする確実な方法に変更
+        all_file_paths = []
+        for root, _, files in os.walk(source_directory):
+            for file in files:
+                if file.endswith(".txt"):
+                    all_file_paths.append(os.path.join(root, file))
+
+        if not all_file_paths:
+            st.error(f"'{source_directory}' 内にドキュメントが見つかりませんでした。")
+            st.stop()
+
+        # 個別のファイルをTextLoaderで読み込む
+        documents = []
+        for file_path in all_file_paths:
+            try:
+                loader = TextLoader(file_path, encoding='utf-8')
+                documents.extend(loader.load())
+            except Exception as e:
+                st.warning(f"ファイル '{file_path}' の読み込み中にエラー: {e}")
+
         st.info(f"'{source_directory}' から {len(documents)} 件のドキュメントを読み込み、チャンクに分割しました。")
         
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
@@ -184,7 +194,7 @@ db = load_faiss_index(FAISS_INDEX_PATH, embeddings)
 if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant",
-        "content": "僕はしゅんさんのクローンです。しゅんさんが教えてくれた情報を元にあなたの質問に答えちゃうよ！引き寄せの法則・オーダーノートを学ぶ中で疑問や人生相談などあればなんなりチャットから教えてください！\\n\\n※あなたが質問したことはいかなることであっても、しゅんさんや他の人には見えないから、安心してね！",
+        "content": "僕はしゅんさんのクローンです。しゅんさんが教えてくれた情報を元にあなたの質問に答えちゃうよ！引き寄せの法則・オーダーノートを学ぶ中で疑問や人生相談などあればなんなりチャットから教えてください！\n\n※あなたが質問したことはいかなることであっても、しゅんさんや他の人には見えないから、安心してね！",
         "id": str(uuid.uuid4()),
     }]
 if "scroll_to_bottom" not in st.session_state:
