@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import json
 import google.generativeai as genai
-from google.genai import types
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 import uuid
@@ -13,67 +12,6 @@ from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import traceback
 import glob
-
-def generate_source_reasons(client, prompt, docs_with_scores):
-    """
-    各参照ドキュメントがユーザーのプロンプトに本当に関連しているかを判断し、
-    関連している場合はその理由を、していない場合はその旨を返します。
-    """
-    if not docs_with_scores:
-        return []
-
-    content_list = []
-    for i, (doc, score) in enumerate(docs_with_scores):
-        content_list.append(f"<{i+1}>\\n{doc.page_content}\\n</{i+1}>")
-    
-    formatted_chunks = "\\n\\n".join(content_list)
-
-    system_prompt = "あなたは、ユーザーの質問と複数のテキスト断片の関係性を分析する専門家です。各テキスト断片がユーザーの質問に本当に関連しているかを厳密に判断し、関連している場合はその核心的な理由を、関連していない場合はその旨を明確に示してください。"
-    
-    user_message = f"""以下のユーザーの質問と、それに関連する可能性のあるテキスト断片リストを読んでください。
-
-# ユーザーの質問
-{prompt}
-
-# テキスト断片リスト
-{formatted_chunks}
-
-# 指示
-各テキスト断片について、以下のどちらかの形式で回答してください。
-1.  **本当に関連している場合:** `理由: [ここに具体的な理由を1文で記述]`
-2.  **関連していない場合:** `理由: [IRRELEVANT]`
-
-番号を付けてリスト形式で出力し、他の余計な言葉は含めないでください。
-
-例:
-1. 理由: 〇〇という課題に対する具体的な解決策が示されているため。
-2. 理由: [IRRELEVANT]
-3. 理由: 質問内のキーワード「△△」に関する詳細な背景を説明しているため。
-"""
-    try:
-        response = client.models.generate_content(
-            model="gemini-2.5-pro",
-            contents=system_prompt + "\\n\\n" + user_message,
-            config=types.GenerateContentConfig(
-                temperature=0,
-                max_output_tokens=500,
-            )
-        )
-        reasons_text = response.text
-        reasons = []
-        for line in reasons_text.strip().split('\\n'):
-            if '理由: ' in line:
-                reason = line.split('理由: ', 1)[1].strip()
-                reasons.append(reason)
-        
-        if len(reasons) == len(docs_with_scores):
-            return reasons
-        else:
-            # パース失敗時は全て無関係として扱う
-            return ["[IRRELEVANT]"] * len(docs_with_scores)
-    except Exception:
-        return ["[IRRELEVANT]"] * len(docs_with_scores)
-
 
 # --- 定数 ---
 SIMILARITY_THRESHOLD = 0.7 # 類似度評価のしきい値を再度有効化
@@ -99,6 +37,12 @@ st.title("いつでもしゅんさん")
 
 # StreamlitのsecretsからAPIキーを設定
 try:
+    # 非同期処理の初期化問題を解決するため、全ての処理の前にイベントループを設定
+    try:
+        asyncio.get_running_loop()
+    except RuntimeError:
+        asyncio.set_event_loop(asyncio.new_event_loop())
+
     api_key = st.secrets.get("GEMINI_API_KEY") or st.secrets.get("GOOGLE_API_KEY")
     if not api_key:
         raise KeyError("API key not found")
@@ -111,12 +55,6 @@ try:
         google_api_key=api_key
     )
 
-    # 非同期処理の初期化問題を解決するため、グローバルスコープでイベントループを設定
-    try:
-        asyncio.get_running_loop()
-    except RuntimeError:
-        asyncio.set_event_loop(asyncio.new_event_loop())
-        
 except KeyError:
     st.error("Gemini APIキーが設定されていません。Streamlit Cloudの設定でGEMINI_API_KEYまたはGOOGLE_API_KEYを追加してください。")
     st.stop()
