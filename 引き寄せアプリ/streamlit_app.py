@@ -165,6 +165,25 @@ def load_faiss_index(path, _embeddings):
     else:
         return build_and_save_faiss_index(_embeddings)
 
+# --- サイドバーにナレッジソース情報を表示 ---
+st.sidebar.title("⚙️ ナレッジベース情報")
+try:
+    source_directory, pattern = KNOWLEDGE_SOURCES[0]
+    search_path = os.path.join(source_directory, pattern)
+    all_file_paths = sorted(glob.glob(search_path, recursive=True))
+
+    st.sidebar.success(f"**読み込み元フォルダ:**\\n`{source_directory}`")
+
+    with st.sidebar.expander(f"**読み込み対象ファイル: {len(all_file_paths)}件**"):
+        st.markdown("---")
+        # パスを整形して表示
+        display_text = "\\n".join([f"- `{os.path.relpath(p)}`" for p in all_file_paths])
+        st.markdown(display_text)
+
+except Exception as e:
+    st.sidebar.error(f"ファイルリストの取得中にエラー: {e}")
+
+
 db = load_faiss_index(FAISS_INDEX_PATH, embeddings)
 
 # セッション状態の初期化
