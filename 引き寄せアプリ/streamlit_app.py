@@ -38,14 +38,10 @@ def generate_source_reasons(prompt, docs_with_scores):
 {formatted_chunks}
 
 # 指示
-各テキスト断片について、その関連性を説明する理由を**一つだけ**、30字以内の簡潔な日本語で生成してください。
-番号を付けてリスト形式で出力し、他の余計な言葉は含めないでください。
+各テキスト断片について、その関連性を説明する理由を**一つだけ**、30字以内の簡潔な日本語で生成し、JSON文字列のリスト形式で出力してください。
+他の余計な言葉や説明は絶対に含めないでください。
 
-例:
-1. お金の引き寄せ方を解説しているため。
-2. 「枠の外に出る」重要性について言及しているから。
-
-理由リスト:
+["理由1", "理由2", "理由3", ...]
 """
     try:
         response = model.generate_content(
@@ -55,20 +51,22 @@ def generate_source_reasons(prompt, docs_with_scores):
                 max_output_tokens=500,
             )
         )
-        reasons_text = response.text
-        reasons = []
-        # "1. 理由" のような形式をパース
-        for line in reasons_text.strip().split('\n'):
-            match = re.match(r'\d+\.\s*(.*)', line)
-            if match:
-                reasons.append(match.group(1).strip())
         
-        # パース失敗時や数が合わない場合は、汎用的な理由を返す
-        if len(reasons) != len(docs_with_scores):
+        response_text = response.text
+        # ```json ... ``` のようなマークダウンブロックを考慮してJSONを抽出
+        match = re.search(r'\[.*\]', response_text, re.DOTALL)
+        if match:
+            json_str = match.group(0)
+            reasons = json.loads(json_str)
+        else:
+            reasons = []
+
+        if isinstance(reasons, list) and len(reasons) == len(docs_with_scores):
+            return reasons
+        else:
             return ["プロンプトとの類似性が見つかりました。"] * len(docs_with_scores)
-        return reasons
+
     except Exception:
-        # エラー時も汎用的な理由を返す
         return ["プロンプトとの類似性が見つかりました。"] * len(docs_with_scores)
 
 # --- 定数 ---
@@ -367,7 +365,8 @@ if prompt := st.chat_input("ここにメッセージを入力してください"
                 full_response = response.text
             
             # AIの応答に含まれる不要なバックスラッシュを削除してマークダウンを修正
-            full_response = full_response.replace('\\*', '*')
+            # 例: `\*\*` -> `**`
+            full_response = re.sub(r'\\(\*|`|_)', r'\1', full_response)
                 
             message_placeholder.markdown(full_response)
 
