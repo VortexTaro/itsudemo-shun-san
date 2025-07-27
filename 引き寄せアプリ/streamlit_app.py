@@ -102,6 +102,13 @@ try:
     if not api_key:
         raise KeyError("API key not found")
     client = genai.Client(api_key=api_key)
+
+    # 非同期処理の初期化問題を解決するため、グローバルスコープでイベントループを設定
+    try:
+        asyncio.get_running_loop()
+    except RuntimeError:
+        asyncio.set_event_loop(asyncio.new_event_loop())
+        
     # 埋め込みモデルを一元管理
     embeddings = GoogleGenerativeAIEmbeddings(
         model="models/embedding-001",
