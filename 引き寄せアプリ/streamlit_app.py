@@ -112,6 +112,10 @@ def build_and_save_faiss_index(embeddings):
         if not all_file_paths:
             st.error(f"'{source_directory}' 内にドキュメントが見つかりませんでした。globパターン: '{search_path}'")
             st.stop()
+        
+        # 発見したファイルリストをデバッグ用に表示
+        with st.expander(f"発見された {len(all_file_paths)} 件のファイルリスト（最初の30件）"):
+            st.code('\n'.join(sorted(all_file_paths)[:30]))
 
         # 個別のファイルをTextLoaderで読み込む
         documents = []
