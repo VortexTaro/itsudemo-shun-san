@@ -96,7 +96,7 @@ except KeyError:
 
 # --- 知識ベース構築 ---
 KNOWLEDGE_SOURCES = [
-    ("引き寄せアプリ/オーダーノート現実創造プログラム", "**/*.txt"),
+    ("オーダーノート現実創造プログラム", "**/*.txt"),
 ]
 FAISS_INDEX_PATH = "data/faiss_index_v2" # 新しいパスに変更
 
